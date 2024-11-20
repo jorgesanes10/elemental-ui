@@ -1,0 +1,36 @@
+@use '../../variables' as v;
+
+.eui-animation {
+  transition-timing-function: v.$transition-jump;
+  transition-property: all;
+
+  &.eui-animation-slideFromBottom {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+
+  &.eui-animation-slideFromTop {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+
+  &.eui-animation-slideFromLeft {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+
+  &.eui-animation-slideFromRight {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+
+  &.eui-animation-pop {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+
+  &.mounting {
+    opacity: 1;
+    transform: translateY(0) translateY(0) scale(1);
+  }
+}
