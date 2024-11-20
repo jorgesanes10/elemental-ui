@@ -1,0 +1,488 @@
+@use '../variables' as v;
+@use '../mixins' as m;
+
+.eui-btn {
+  padding: 0;
+  font-size: 14px;
+  display: inline-block;
+  font-weight: v.$btn-font-weight;
+  -webkit-appearance: none;
+  border: none;
+  background: none;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+  line-height: v.$line-height-small;
+  @include m.user-select(none);
+  position: relative;
+  @include m.touch-enhanced();
+
+  .eui-btn-styles {
+    padding: 8px 20px;
+    transition: background-color 0.1s ease-out, border-color 0.1s ease-out,
+    box-shadow 0.05s ease-out, color 0.1s ease-out;
+    text-align: center;
+    background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
+    border: 1px solid transparent;
+    border-radius: v.$btn-border-radius-small;
+  }
+
+  .progress {
+    opacity: 0;
+    position: absolute;
+    height: 100%;
+    right: 0;
+    top: 0;
+    z-index: 1;
+    transition: 0.2s ease-out;
+    border-radius: 0 2px 2px 0;
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+
+  .eui-btn-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .caption {
+    display: flex;
+    align-items: center;
+  }
+
+  & + & {
+    margin-left: 5px;
+  }
+
+  &,
+  &:active,
+  &.active {
+    outline: 0;
+    box-shadow: none;
+  }
+
+  &,
+  &:hover,
+  &:focus,
+  &.focus {
+    text-decoration: none;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: v.$focus-shadow;
+  }
+
+  &:focus:not(:focus-visible) {
+    box-shadow: none;
+  }
+
+  &:focus-visible {
+    box-shadow: v.$focus-shadow;
+  }
+
+  &[disabled] {
+    pointer-events: none;
+    @include m.opacity(0.65);
+  }
+
+  &.eui-btn-lg,
+  &.eui-btn-large {
+    .eui-btn-styles {
+      padding: 19px 37px;
+      border-radius: v.$btn-border-radius-large;
+    }
+
+    line-height: 1.5;
+  }
+
+  &.eui-btn-sm,
+  &.eui-btn-small {
+    .eui-btn-styles {
+      padding: 11px 19px;
+      border-radius: v.$btn-border-radius-small;
+    }
+
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+
+  //== Alternate buttons
+
+  &.eui-btn-default {
+    @include m.button-variant(v.$btn-default-color, v.$btn-default-bg, v.$btn-default-border);
+
+    i {
+      color: v.$gray-light;
+    }
+  }
+
+  &.eui-btn-brand {
+    @include m.button-variant(#fff, v.$brand-color, transparent);
+  }
+
+  // This might have to be removed!!!
+  &.eui-btn-primary {
+    @include m.button-variant(v.$btn-primary-color, v.$btn-primary-bg, v.$btn-primary-border);
+  }
+
+  &.eui-btn-success {
+    @include m.button-variant(v.$btn-success-color, v.$btn-success-bg, v.$btn-success-border);
+  }
+
+  &.eui-btn-info {
+    @include m.button-variant(v.$btn-info-color, v.$btn-info-bg, v.$btn-info-border);
+  }
+
+  &.eui-btn-warning {
+    @include m.button-variant(v.$gray-dark, v.$btn-warning-bg, v.$btn-warning-border);
+  }
+
+  &.eui-btn-danger {
+    @include m.button-variant(v.$btn-danger-color, v.$btn-danger-bg, v.$btn-danger-border);
+  }
+
+  //== Flat shape
+
+  &.eui-btn-flat {
+    .eui-btn-styles {
+      background-color: transparent;
+      border-color: transparent;
+    }
+
+    &.eui-btn-default {
+      @include m.button-flat-variant(v.$btn-default-color);
+    }
+
+    // This might have to be removed!!!
+    &.eui-btn-primary {
+      @include m.button-flat-variant(v.$brand-primary);
+    }
+
+    &.eui-btn-brand {
+      @include m.button-flat-variant(v.$brand-color);
+    }
+
+    &.eui-btn-info {
+      @include m.button-flat-variant(v.$brand-info);
+    }
+
+    &.eui-btn-danger {
+      @include m.button-flat-variant(v.$brand-danger);
+    }
+
+    &.eui-btn-warning {
+      @include m.button-flat-variant(v.$brand-warning);
+    }
+
+    &.eui-btn-success {
+      @include m.button-flat-variant(v.$brand-success);
+    }
+  }
+
+  //== Outline shape
+
+  &.eui-btn-outline {
+    .eui-btn-styles {
+      background-color: transparent;
+    }
+
+    &.eui-btn-default {
+      .eui-btn-styles {
+        color: v.$btn-default-color;
+        border-color: v.$btn-default-border;
+      }
+
+      &:hover,
+      &:focus {
+        .eui-btn-styles {
+          background-color: rgba(v.$btn-default-border, 0.15);
+        }
+      }
+
+      &:active,
+      &.active {
+        .eui-btn-styles {
+          background-color: rgba(v.$btn-default-border, 0.25);
+        }
+
+        &:hover,
+        &:focus,
+        &.focus {
+          .eui-btn-styles {
+            background-color: rgba(v.$btn-default-border, 0.25);
+          }
+        }
+      }
+    }
+
+    &.eui-btn-brand {
+      @include m.button-outline-variant(v.$brand-color, #fff);
+    }
+
+    // This might have to be removed!!!
+    &.eui-btn-primary {
+      @include m.button-outline-variant(v.$brand-primary, v.$btn-primary-color);
+    }
+
+    &.eui-btn-info {
+      @include m.button-outline-variant(v.$brand-info, v.$btn-info-color);
+    }
+
+    &.eui-btn-danger {
+      @include m.button-outline-variant(v.$brand-danger, v.$btn-danger-color);
+    }
+
+    &.eui-btn-warning {
+      @include m.button-outline-variant(v.$brand-warning, v.$btn-warning-color);
+    }
+
+    &.eui-btn-success {
+      @include m.button-outline-variant(v.$brand-success, v.$btn-success-color);
+    }
+  }
+
+  //== Icons support
+
+  i {
+    font-size: 21px;
+  }
+
+  i + span {
+    margin-left: 8px;
+  }
+
+  span + i {
+    margin-left: 8px;
+  }
+
+  //== Caret support
+
+  .caret {
+    border-style: solid;
+    border-width: 2px 2px 0 0;
+    display: inline-block;
+    height: 7px;
+    width: 7px;
+    left: 7px;
+    position: relative;
+    top: -2px;
+    transform: rotate(135deg);
+    margin-right: 4px;
+  }
+
+  //= Loading
+
+  &.loading {
+    height: 39px;
+
+    &.eui-btn-lg,
+    &.eui-btn-large {
+      height: 61px;
+
+      .eui-spinner {
+        bottom: 17px;
+        right: 42px;
+      }
+    }
+
+    &.eui-btn-sm,
+    &.eui-btn-small {
+      height: 48px;
+
+      .eui-spinner {
+        bottom: 10px;
+      }
+    }
+
+    .eui-spinner {
+      position: absolute;
+      width: 25px;
+      height: 25px;
+      bottom: 6px;
+      right: 30px;
+      border-top-color: v.$off-white;
+      border-right-color: v.$off-white;
+      border-bottom-color: v.$off-white;
+
+      .eui-spinner-path {
+        stroke: transparent;
+        animation: dash-sm 1.5s ease-in-out infinite !important;
+      }
+    }
+
+    &.eui-btn-default {
+      .eui-spinner {
+        border-top-color: v.$gray-lightest;
+        border-right-color: v.$gray-lightest;
+        border-bottom-color: v.$gray-lightest;
+      }
+    }
+
+    &.eui-btn-flat,
+    &.eui-btn-outline {
+      &.eui-btn-danger {
+        .eui-spinner .eui-spinner-path {
+          stroke: v.$brand-danger !important;
+        }
+      }
+
+      &.eui-btn-warning {
+        .eui-spinner .eui-spinner-path {
+          stroke: v.$brand-warning !important;
+        }
+      }
+
+      &.eui-btn-info {
+        .eui-spinner .eui-spinner-path {
+          stroke: v.$brand-info !important;
+        }
+      }
+
+      &.eui-btn-success {
+        .eui-spinner .eui-spinner-path {
+          stroke: v.$brand-success !important;
+        }
+      }
+    }
+
+    &.eui-btn-outline {
+      &:hover {
+        .eui-spinner .eui-spinner-path {
+          stroke: v.$text-white !important;
+        }
+      }
+    }
+
+    &.eui-btn-default {
+      .eui-spinner .eui-spinner-path {
+        stroke: transparent;
+      }
+    }
+
+    @supports (stroke-dashoffset: 0) and (not (-ms-ime-align: auto)) {
+      &.eui-btn-default {
+        .eui-spinner .eui-spinner-path {
+          stroke: v.$gray-lightest;
+        }
+      }
+
+      &.eui-btn-lg,
+      &.eui-btn-large {
+        .eui-spinner {
+          bottom: unset;
+          right: unset;
+        }
+      }
+
+      &.eui-btn-sm,
+      &.eui-btn-small {
+        .eui-spinner {
+          bottom: unset;
+        }
+      }
+
+      .eui-spinner {
+        bottom: unset;
+        right: unset;
+        width: unset;
+        height: unset;
+
+        .eui-spinner-path {
+          stroke: v.$text-white;
+        }
+      }
+    }
+  }
+
+  &.loading {
+    .eui-spinner + .caption {
+      visibility: hidden;
+    }
+  }
+
+  &.has-progress {
+    .progress {
+      display: block;
+      opacity: 1;
+
+      + .eui-btn-content {
+        .eui-spinner {
+          display: none;
+        }
+
+        .caption {
+          visibility: visible;
+          z-index: 2;
+        }
+      }
+    }
+
+    //default
+    &.eui-btn-default {
+      &.eui-btn-flat,
+      &.eui-btn-outline {
+        @include m.button-progress(v.$btn-default-color, v.$btn-default-bg, v.$btn-default-border);
+      }
+    }
+
+    //brand
+    &.eui-btn-brand {
+      &.eui-btn-flat,
+      &.eui-btn-outline {
+        @include m.button-progress(#fff, v.$brand-color, transparent);
+      }
+    }
+
+    //primary
+    &.eui-btn-primary {
+      &.eui-btn-flat,
+      &.eui-btn-outline {
+        @include m.button-progress(v.$btn-primary-color, v.$btn-primary-bg, v.$btn-primary-border);
+      }
+    }
+
+    //danger
+    &.eui-btn-danger {
+      &.eui-btn-flat,
+      &.eui-btn-outline {
+        @include m.button-progress(v.$btn-danger-color, v.$btn-danger-bg, v.$btn-danger-border);
+      }
+    }
+
+    //warning
+    &.eui-btn-warning {
+      &.eui-btn-flat,
+      &.eui-btn-outline {
+        @include m.button-progress(v.$btn-warning-color, v.$btn-warning-bg, v.$btn-warning-border);
+
+        .eui-btn-styles {
+          color: v.$gray-dark !important;
+        }
+
+        &:hover,
+        &:focus {
+          .eui-btn-styles {
+            color: v.$gray-dark;
+          }
+        }
+      }
+    }
+
+    //info
+    &.eui-btn-info {
+      &.eui-btn-flat,
+      &.eui-btn-outline {
+        @include m.button-progress(v.$btn-info-color, v.$btn-info-bg, v.$btn-info-border);
+      }
+    }
+    //success
+    &.eui-btn-success {
+      &.eui-btn-flat,
+      &.eui-btn-outline {
+        @include m.button-progress(v.$btn-success-color, v.$btn-success-bg, v.$btn-success-border);
+      }
+    }
+  }
+}

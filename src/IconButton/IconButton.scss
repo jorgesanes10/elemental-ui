@@ -1,0 +1,106 @@
+@use "sass:list";
+@use '../_variables' as v;
+
+.eui-icon-button {
+  border: 0;
+  padding: 0;
+  opacity: 0.8;
+  position: relative;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+  background-image: none;
+  outline: none;
+  border-radius: 50%;
+  color: v.$gray-light;
+
+  &:disabled {
+    opacity: 0.4;
+    pointer-events: none;
+  }
+
+  &,
+  &:active,
+  &.active {
+    &,
+    &:hover,
+    &:focus,
+    &.focus {
+      background-color: transparent;
+      box-shadow: none;
+      outline: 0;
+    }
+  }
+
+  &:hover,
+  &:focus,
+  &.focus {
+    opacity: 1;
+  }
+
+  &,
+  &::before {
+    background-size: 24px 24px;
+    height: 24px;
+    width: 24px;
+    box-sizing: content-box;
+  }
+
+  &::before {
+    border-radius: 50%;
+    top: -4px;
+    left: -4px;
+    bottom: -4px;
+    right: -4px;
+    margin: auto;
+    padding: 4px;
+    position: absolute;
+    content: ' ';
+  }
+
+  &:focus::before,
+  &:hover::before {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  &:active::before,
+  &.active::before {
+    background-color: rgba(0, 0, 0, 0.15);
+  }
+
+  i {
+    font-size: 24px;
+    line-height: 1;
+    position: static;
+    margin-top: 0;
+  }
+
+  .btn-toolbar > & {
+    margin-left: 8px;
+    float: left;
+  }
+
+  $colors: success, danger, warning, info, brand;
+  $vars: v.$brand-success, v.$brand-danger, v.$brand-warning, v.$brand-info, v.$brand-color;
+
+  @for $i from 1 through 5 {
+    $color: list.nth($colors, $i);
+    $color-var: list.nth($vars, $i);
+
+    &.eui-icon-button-#{$color} {
+      .eui-icon {
+        color: $color-var;
+      }
+
+      &:focus::before,
+      &:hover::before {
+        background-color: rgba($color-var, 0.1);
+      }
+
+      &:active::before,
+      &.active::before {
+        background-color: rgba($color-var, 0.15);
+      }
+    }
+  }
+}

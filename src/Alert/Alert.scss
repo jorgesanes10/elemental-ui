@@ -1,0 +1,77 @@
+@use "sass:color";
+@use '../_variables' as v;
+
+.eui-alert {
+  font-size: v.$alert-font-size;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 13px 18px 13px 50px;
+  margin-bottom: 20px;
+  position: relative;
+  border-radius: v.$border-radius-base;
+
+  & > div {
+    display: flex;
+    align-items: center;
+  }
+
+  .eui-alert-default-icon {
+    margin-right: 16px;
+
+    color: v.$gray-light;
+  }
+
+  .eui-alert-title,
+  .eui-alert-description {
+    margin: 0;
+  }
+
+  .eui-alert-title {
+    font-weight: 600;
+  }
+
+  &.eui-alert-success {
+    background-color: v.$state-success-bg;
+  }
+
+  &.eui-alert-info {
+    background-color: v.$state-info-bg;
+  }
+
+  &.eui-alert-danger {
+    background-color: v.$state-danger-bg;
+  }
+
+  &.eui-alert-warning {
+    background-color: v.$state-warning-bg;
+  }
+
+  &.eui-alert-inactive {
+    background-color: v.$off-white-dark;
+
+    .eui-btn-default {
+      .eui-btn-styles {
+        background-color: transparent;
+      }
+
+      &:hover {
+        .eui-btn-styles {
+          background-color: color.adjust(#fff, $lightness: 10%);
+        }
+      }
+
+      &:active {
+        .eui-btn-styles {
+          background-color: color.adjust(#fff, $lightness: 15%);
+        }
+      }
+    }
+  }
+
+  .eui-alert-default-icon {
+    position: absolute;
+    left: 18px;
+  }
+}

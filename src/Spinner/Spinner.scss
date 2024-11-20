@@ -1,0 +1,197 @@
+@use '../variables' as v;
+
+.eui-spinner {
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  border-top: 4px solid v.$brand-info;
+  border-right: 4px solid v.$brand-info;
+  border-bottom: 4px solid v.$brand-info;
+  border-left: 4px solid transparent;
+  border-radius: 50%;
+  animation: rotate 0.6s linear infinite;
+
+  circle {
+    animation: dash-md 1.5s ease-in-out infinite;
+  }
+
+  &.eui-spinner-sm {
+    width: 30px;
+    height: 30px;
+    border-width: 3px;
+
+    circle {
+      animation: dash-sm 1.5s ease-in-out infinite;
+    }
+  }
+
+  &.eui-spinner-lg {
+    width: 70px;
+    height: 70px;
+
+    circle {
+      animation: dash-lg 1.5s ease-in-out infinite;
+    }
+  }
+
+  &.eui-spinner-info {
+    border-top-color: v.$brand-info;
+    border-right-color: v.$brand-info;
+    border-bottom-color: v.$brand-info;
+  }
+
+  &.eui-spinner-danger {
+    border-top-color: v.$brand-danger;
+    border-right-color: v.$brand-danger;
+    border-bottom-color: v.$brand-danger;
+  }
+
+  &.eui-spinner-warning {
+    border-top-color: v.$brand-warning;
+    border-right-color: v.$brand-warning;
+    border-bottom-color: v.$brand-warning;
+  }
+
+  &.eui-spinner-success {
+    border-top-color: v.$brand-success;
+    border-right-color: v.$brand-success;
+    border-bottom-color: v.$brand-success;
+  }
+
+  &.eui-spinner-brand {
+    border-top-color: v.$brand-color;
+    border-right-color: v.$brand-color;
+    border-bottom-color: v.$brand-color;
+  }
+
+  &.eui-spinner-default {
+    circle {
+      animation: spinner-colors 6s ease-in-out infinite, dash-md 1.5s ease-in-out infinite;
+    }
+
+    &.eui-spinner-sm {
+      circle {
+        animation: spinner-colors 6s ease-in-out infinite, dash-sm 1.5s ease-in-out infinite;
+      }
+    }
+
+    &.eui-spinner-lg {
+      circle {
+        animation: spinner-colors 6s ease-in-out infinite, dash-lg 1.5s ease-in-out infinite;
+      }
+    }
+  }
+
+  @supports (stroke-dashoffset: 0) and (not (-ms-ime-align: auto)) {
+    animation: rotate 2s linear infinite;
+    border: none;
+
+    .eui-spinner-path {
+      stroke-dasharray: 1%, 200;
+      stroke-dashoffset: 0;
+      stroke-linecap: round;
+      stroke: v.$brand-info;
+    }
+
+    &.eui-spinner-info .eui-spinner-path {
+      stroke: v.$brand-info;
+    }
+
+    &.eui-spinner-danger .eui-spinner-path {
+      stroke: v.$brand-danger;
+    }
+
+    &.eui-spinner-warning .eui-spinner-path {
+      stroke: v.$brand-warning;
+    }
+
+    &.eui-spinner-success .eui-spinner-path {
+      stroke: v.$brand-success;
+    }
+
+    &.eui-spinner-brand .eui-spinner-path {
+      stroke: v.$brand-color;
+    }
+  }
+
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes dash-sm {
+    0% {
+      stroke-dasharray: 1%, 200;
+      stroke-dashoffset: 0;
+    }
+    50% {
+      stroke-dasharray: 190%, 200;
+      stroke-dashoffset: -65%;
+    }
+    100% {
+      stroke-dasharray: 190%, 200;
+      stroke-dashoffset: -205%;
+    }
+  }
+
+  @keyframes dash-md {
+    0% {
+      stroke-dasharray: 1%, 200;
+      stroke-dashoffset: 0;
+    }
+    50% {
+      stroke-dasharray: 190%, 200;
+      stroke-dashoffset: -65%;
+    }
+    100% {
+      stroke-dasharray: 190%, 200;
+      stroke-dashoffset: -245%;
+    }
+  }
+
+  @keyframes dash-lg {
+    0% {
+      stroke-dasharray: 1%, 200;
+      stroke-dashoffset: 0;
+    }
+    50% {
+      stroke-dasharray: 190%, 200;
+      stroke-dashoffset: -65%;
+    }
+    100% {
+      stroke-dasharray: 190%, 200;
+      stroke-dashoffset: -185;
+    }
+  }
+
+  @keyframes spinner-colors {
+    0% {
+      stroke: v.$brand-info;
+    }
+    20% {
+      stroke: v.$brand-info;
+    }
+    25% {
+      stroke: v.$brand-danger;
+    }
+    45% {
+      stroke: v.$brand-danger;
+    }
+    50% {
+      stroke: v.$brand-warning;
+    }
+    70% {
+      stroke: v.$brand-warning;
+    }
+    75% {
+      stroke: v.$brand-success;
+    }
+    95% {
+      stroke: v.$brand-success;
+    }
+  }
+}

@@ -1,0 +1,304 @@
+@use "sass:color";
+@use 'variables' as v;
+
+@mixin bg-variant($parent, $color) {
+  #{$parent} {
+    background-color: $color;
+  }
+
+  a#{$parent}:hover,
+  a#{$parent}:focus {
+    background-color: color.adjust($color, $lightness: -20%);
+  }
+}
+
+@mixin button-flat-variant($color) {
+  $hover-background: rgba($color, 0.05);
+
+  .eui-btn-styles {
+    color: $color;
+  }
+
+  &:focus,
+  &.focus {
+    .eui-btn-styles {
+      color: $color;
+      background-color: $hover-background;
+    }
+  }
+
+  &:hover {
+    .eui-btn-styles {
+      color: $color;
+      background-color: $hover-background;
+    }
+  }
+
+  &:hover,
+  &:focus {
+    .eui-btn-styles {
+      box-shadow: none;
+    }
+  }
+
+  &:active,
+  &.active,
+  .open > &.eui-dropdown-toggle {
+    .eui-btn-styles {
+      color: $color;
+      background-color: rgba($hover-background, 0.1);
+    }
+
+    &:hover,
+    &:focus,
+    &.focus {
+      .eui-btn-styles {
+        color: $color;
+        background-color: rgba($hover-background, 0.1);
+        border-color: transparent;
+      }
+    }
+  }
+
+  &:active,
+  &.active,
+  .open > &.eui-dropdown-toggle {
+    .eui-btn-styles {
+      background-image: none;
+    }
+  }
+}
+
+@mixin button-outline-variant($background, $color) {
+  $hover-background: rgba($background, 0.05);
+
+  .eui-btn-styles {
+    color: $background;
+    border-color: $background;
+  }
+
+  &:focus,
+  &.focus {
+    .eui-btn-styles {
+      color: $background;
+      background-color: $hover-background;
+    }
+  }
+
+  &:hover {
+    .eui-btn-styles {
+      background-color: $hover-background;
+    }
+  }
+
+  &:active,
+  &.active,
+  .open > &.eui-dropdown-toggle {
+    .eui-btn-styles {
+      background-color: rgba($background, 0.1);
+    }
+
+    &:hover,
+    &:focus,
+    &.focus {
+      .eui-btn-styles {
+        background-color: rgba($background, 0.1);
+        border-color: $background;
+        color: $background;
+      }
+    }
+  }
+
+  &:active,
+  &.active,
+  .open > &.eui-dropdown-toggle {
+    .eui-btn-styles {
+      background-image: none;
+    }
+  }
+
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    &:hover,
+    &:focus,
+    &.focus {
+      .eui-btn-styles {
+        background-color: $background;
+      }
+    }
+  }
+
+  .badge {
+    color: $background;
+    background-color: $color;
+  }
+}
+
+@mixin button-variant($color, $background, $border) {
+  .eui-btn-styles {
+    color: $color;
+    background-color: $background;
+    border-color: $border;
+  }
+
+  &:focus,
+  &.focus {
+    .eui-btn-styles {
+      color: $color;
+      background-color: color.adjust($background, $lightness: -5%);
+    }
+  }
+
+  &:hover {
+    .eui-btn-styles {
+      color: $color;
+      background-color: color.adjust($background, $lightness: -5%);
+    }
+  }
+
+  &:active,
+  &.active,
+  .open > &.eui-dropdown-toggle {
+    .eui-btn-styles {
+      background-image: none;
+      color: $color;
+      background-color: color.adjust($background, $lightness: -5%);
+    }
+
+    &:hover,
+    &:focus,
+    &.focus {
+      .eui-btn-styles {
+        color: $color;
+        background-color: color.adjust($background, $lightness: -10%);
+        border-color: color.adjust($border, $lightness: -10%);
+      }
+    }
+  }
+
+  &[disabled] {
+    &:hover,
+    &:focus,
+    &.focus {
+      .eui-btn-styles {
+        background-color: $background;
+        border-color: $border;
+      }
+    }
+  }
+}
+
+@mixin button-progress($color, $background, $border) {
+  .eui-btn-styles {
+    color: $color;
+    background-color: $background;
+    border-color: $border;
+  }
+
+  &:focus,
+  &.focus {
+    .eui-btn-styles {
+      color: $color;
+      background-color: color.adjust($background, $lightness: -10%);
+    }
+  }
+
+  &:hover {
+    .eui-btn-styles {
+      color: $color;
+      background-color: color.adjust($background, $lightness: -10%);
+    }
+  }
+
+  &:active,
+  &.active,
+  .open > &.eui-dropdown-toggle {
+    .eui-btn-styles {
+      background-image: none;
+      color: $color;
+      background-color: color.adjust($background, $lightness: -10%);
+    }
+
+    &:hover,
+    &:focus,
+    &.focus {
+      .eui-btn-styles {
+        color: $color;
+        background-color: color.adjust($background, $lightness: -17%);
+        border-color: color.adjust($border, $lightness: -25%);
+      }
+    }
+  }
+
+  &[disabled] {
+    &:hover,
+    &:focus,
+    &.focus {
+      .eui-btn-styles {
+        background-color: $background;
+        border-color: $border;
+      }
+    }
+  }
+}
+
+@mixin clearfix() {
+  &:before,
+  &:after {
+    content: ' ';
+    display: table;
+  }
+
+  &:after {
+    clear: both;
+  }
+}
+
+@mixin opacity($opacity) {
+  opacity: $opacity;
+  // IE8 filter
+  $opacity-ie: ($opacity * 100);
+  filter: alpha(opacity=$opacity-ie);
+}
+
+@mixin placeholder($color: v.$input-color-placeholder) {
+  // Firefox
+  &::-moz-placeholder {
+    color: $color;
+    opacity: 1; // Override Firefox's unusual default opacity;
+  }
+
+  &:-ms-input-placeholder {
+    color: $color;
+  }
+
+  // Internet Explorer 10+
+  &::-webkit-input-placeholder {
+    color: $color;
+  }
+
+  // Safari and Chrome
+}
+
+@mixin text-emphasis-variant($parent, $color) {
+  #{$parent} {
+    color: $color;
+  }
+
+  a#{$parent}:hover,
+  a#{$parent}:focus {
+    color: color.adjust($color, $lightness: -10%);
+  }
+}
+
+@mixin user-select($select) {
+  -webkit-user-select: $select;
+  -moz-user-select: $select;
+  -ms-user-select: $select; // IE10+
+  user-select: $select;
+}
+
+@mixin touch-enhanced() {
+  -webkit-tap-highlight-color: transparent !important;
+}

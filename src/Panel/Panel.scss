@@ -1,0 +1,131 @@
+@use '../variables' as v;
+
+.eui-panel {
+  background-color: v.$bg-light;
+  border-radius: v.$border-radius-base;
+  border: none;
+  box-shadow: v.$box-shadow;
+  margin-bottom: 22px;
+
+  .eui-panel {
+    box-shadow: none;
+  }
+
+  &.no-padding {
+    > .eui-panel-body {
+      padding: 0;
+    }
+  }
+
+  .eui-panel-heading {
+    padding: v.$panel-heading-padding;
+    border-bottom: 1px solid transparent;
+    border-top-left-radius: v.$border-radius-base;
+    border-top-right-radius: v.$border-radius-base;
+
+    &.regular-padding {
+      padding: 10px 49px;
+    }
+  }
+
+  > .eui-panel-body > .eui-panel {
+    box-shadow: none;
+    margin: 0;
+  }
+
+  .eui-panel-body {
+    padding: 24px;
+  }
+
+  .eui-panel-body::after,
+  .eui-panel-body::before {
+    content: ' ';
+    display: table;
+  }
+
+  .eui-panel-body::after {
+    clear: both;
+  }
+
+  .eui-panel-footer {
+    padding: 24px;
+    border-bottom-left-radius: v.$border-radius-base;
+    border-bottom-right-radius: v.$border-radius-base;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    i {
+      color: v.$gray-light;
+    }
+
+    i + i {
+      margin-left: 16px;
+    }
+  }
+
+  &.eui-panel-warning,
+  &.eui-panel-warning-inverse {
+    .eui-panel-heading {
+      background-color: v.$panel-warning-heading-bg !important;
+      border-color: v.$panel-warning-border;
+      color: v.$panel-warning-text;
+    }
+  }
+
+  &.eui-panel-success,
+  &.eui-panel-success-inverse {
+    .eui-panel-heading {
+      background-color: v.$panel-success-heading-bg !important;
+      border-color: v.$panel-success-border;
+      color: v.$panel-success-text;
+    }
+  }
+
+  &.eui-panel-danger,
+  &.eui-panel-danger-inverse {
+    .eui-panel-heading {
+      background-color: v.$panel-danger-heading-bg !important;
+      border-color: v.$panel-danger-border;
+      color: v.$panel-danger-text;
+    }
+  }
+
+  .eui-table,
+  .eui-table-responsive > .eui-table {
+    > thead,
+    > tbody,
+    > .eui-table-header,
+    > tfoot {
+      border-right: none;
+
+      > tr {
+        border-left: none;
+        border-right: none;
+
+        td,
+        th {
+          border-right: none;
+        }
+      }
+    }
+
+    thead > tr:first-child {
+      border-top: none;
+    }
+
+    tbody {
+      border-right: none;
+      border-left: none;
+
+      & > tr:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+
+  .eui-toolbar {
+    border-top-left-radius: v.$border-radius-base;
+    border-top-right-radius: v.$border-radius-base;
+  }
+}
