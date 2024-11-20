@@ -1,5 +1,5 @@
 @use "sass:color";
-@use '../_variables' as v;
+@use '../../variables' as v;
 
 .eui-alert {
   font-size: v.$alert-font-size;

@@ -1,6 +1,6 @@
-export { default as Alert } from './Alert';
-export { default as Button } from './Button';
-export { default as Icon } from './Icon';
-export { default as IconButton } from './IconButton';
-export { default as Panel } from './Panel';
-export { default as Spinner } from './Spinner';
+export { default as Alert } from './components/Alert';
+export { default as Button } from './components/Button';
+export { default as Icon } from './components/Icon';
+export { default as IconButton } from './components/IconButton';
+export { default as Panel } from './components/Panel';
+export { default as Spinner } from './components/Spinner';

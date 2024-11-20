@@ -1,6 +1,6 @@
 import React, { HTMLProps } from 'react';
 import classnames from 'classnames';
-import simpleComponentFactory from '../utils/simpleComponentFactory';
+import simpleComponentFactory from '../../utils/simpleComponentFactory.tsx';
 
 type PanelProps = HTMLProps<HTMLElement> & {
   color?: 'default' | 'success' | 'warning' | 'danger';

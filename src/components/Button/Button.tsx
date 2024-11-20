@@ -7,7 +7,7 @@ import React, {
 } from 'react';
 import Spinner from '../Spinner';
 import classnames from 'classnames';
-import findElementNode from '../utils/findElementNode';
+import findElementNode from '../../utils/findElementNode.ts';
 
 interface ButtonRef {
   node: MutableRefObject<HTMLButtonElement | null>;

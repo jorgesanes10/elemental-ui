@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Panel from './Panel';
+import Panel from './Panel.tsx';
 
 const meta: Meta<typeof Panel> = {
   component: Panel,
@@ -69,5 +69,8 @@ export const WithHeading: Story = {
         type: 'select',
       },
     },
+  },
+  args: {
+    color: 'default',
   },
 };

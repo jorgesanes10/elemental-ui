@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Icon from './Icon';
+import Icon from './Icon.tsx';
 
 const meta: Meta<typeof Icon> = {
   component: Icon,
@@ -168,4 +168,9 @@ export const Styles: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    controls: {
+      disable: true,
+    },
+  },
 };

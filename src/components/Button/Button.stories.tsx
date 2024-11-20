@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Button, { ButtonProps } from './Button';
+import Button, { ButtonProps } from './Button.tsx';
 import { CSSProperties } from 'react';
-import { Icon, Panel } from '../index.ts';
+import { Icon, Panel } from '../../index.ts';
 
 const meta: Meta<typeof Button> = {
   component: Button,
@@ -145,4 +145,9 @@ export const Styles: Story = {
       </Panel>
     </div>
   ),
+  parameters: {
+    controls: {
+      disable: true,
+    },
+  },
 };

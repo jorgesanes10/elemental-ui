@@ -7,7 +7,7 @@ import React, {
 } from 'react';
 import classnames from 'classnames';
 import Icon from '../Icon';
-import findElementNode from '../utils/findElementNode';
+import findElementNode from '../../utils/findElementNode.ts';
 
 interface IconButtonRef {
   node: MutableRefObject<HTMLButtonElement | null>;
