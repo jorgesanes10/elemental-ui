@@ -1,0 +1,42 @@
+@use '../../variables' as v;
+
+.eui-avatar {
+  border-radius: 50%;
+  text-align: center;
+  text-transform: uppercase;
+  color: v.$text-white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+
+  &.eui-avatar-xs {
+    width: 25px;
+    height: 25px;
+    min-width: 25px;
+    font-size: 11px;
+    letter-spacing: 0.46px;
+    line-height: 11px;
+  }
+
+  &.eui-avatar-sm {
+    width: 35px;
+    height: 35px;
+    min-width: 35px;
+    font-size: 13px;
+  }
+
+  &.eui-avatar-md {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    font-size: 13px;
+  }
+
+  &.eui-avatar-lg {
+    width: 52px;
+    height: 52px;
+    min-width: 52px;
+    font-size: 19px;
+  }
+}
