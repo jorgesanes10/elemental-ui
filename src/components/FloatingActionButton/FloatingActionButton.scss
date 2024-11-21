@@ -1,0 +1,78 @@
+@use 'sass:color';
+@use '../../variables' as v;
+@use '../../mixins' as m;
+
+.eui-floating-action-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 56px;
+  width: 56px;
+  border-radius: 50%;
+  color: v.$text-white;
+  border: none;
+  background-color: v.$floating-action-bg-color;
+  box-shadow: v.$floating-action-shadow;
+  @include m.touch-enhanced();
+
+  &.eui-floating-action-button-default {
+    background-color: v.$bg-light;
+    color: v.$gray-dark;
+
+    &:hover,
+    &:focus,
+    &.focus {
+      background-color: color.adjust(v.$bg-light, $lightness: -5%);
+    }
+
+    &:active,
+    .active {
+      background-color: color.adjust(v.$bg-light, $lightness: -10%);
+    }
+  }
+
+  &.eui-floating-action-button-brand {
+    background-color: v.$brand-color;
+    color: #fff;
+
+    &:hover,
+    &:focus,
+    &.focus {
+      background-color: color.adjust(v.$brand-color, $lightness: -5%);
+    }
+
+    &:active,
+    .active {
+      background-color: color.adjust(v.$brand-color, $lightness: -10%);
+    }
+  }
+
+  &[disabled] {
+    pointer-events: none;
+    opacity: 0.65;
+    box-shadow: none;
+  }
+
+  &,
+  img,
+  i {
+    transition: all 0.15s ease-out;
+  }
+
+  img {
+    height: 18px;
+  }
+
+  &:hover,
+  &:focus,
+  &.focus {
+    background-color: color.adjust(v.$floating-action-bg-color, $lightness: -5%);
+    box-shadow: v.$floating-action-active-shadow;
+    outline: none;
+  }
+
+  &:active,
+  .active {
+    background-color: color.adjust(v.$floating-action-bg-color, $lightness: -10%);
+  }
+}
