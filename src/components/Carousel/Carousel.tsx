@@ -88,6 +88,21 @@ const Carousel: FC<CarouselProps> = (props) => {
     slideAutomatically();
   }, [props.slidingInterval, slides, currentSlide]);
 
+  const storeSlides = () => {
+    if (!children) {
+      return false;
+    }
+
+    const slides = children.map(
+      (child, index): Slide => ({
+        id: child.props.id,
+        position: index,
+      }),
+    );
+
+    setSlides(slides);
+  };
+
   const setSlidesWidth = () => {
     const width = Math.floor(
       findElementNode(currentSlideNode)!.getBoundingClientRect().width,
@@ -146,18 +161,6 @@ const Carousel: FC<CarouselProps> = (props) => {
     return displaySlides;
   };
 
-  const getFormattedSlide = (
-    position: number,
-    innerMargin: number,
-    children: ReactElement | ReactElement[],
-  ) => {
-    return (
-      <div key={`slide-${position}`} style={{ margin: innerMargin }}>
-        {children}
-      </div>
-    );
-  };
-
   const generateIndicators = (currentSlide: number) => {
     if (!children) {
       return;
@@ -184,8 +187,30 @@ const Carousel: FC<CarouselProps> = (props) => {
     setIndicators(indicators);
   };
 
-  const handleIndicatorClick = (index: number) => {
-    goToSlide(index);
+  const getSlide = (position: number, direction?: Direction) => {
+    const curSlide = slides.find((slide) => slide.position === position);
+
+    if (curSlide) {
+      return curSlide;
+    }
+
+    if (direction === 'next') {
+      return slides[0];
+    }
+
+    return slides[slides.length - 1];
+  };
+
+  const getFormattedSlide = (
+    position: number,
+    innerMargin: number,
+    children: ReactElement | ReactElement[],
+  ) => {
+    return (
+      <div key={`slide-${position}`} style={{ margin: innerMargin }}>
+        {children}
+      </div>
+    );
   };
 
   const goToSlide = (slide: number) => {
@@ -214,44 +239,7 @@ const Carousel: FC<CarouselProps> = (props) => {
     }
   };
 
-  const getSlide = (position: number, direction?: Direction) => {
-    const curSlide = slides.find((slide) => slide.position === position);
-
-    if (curSlide) {
-      return curSlide;
-    }
-
-    if (direction === 'next') {
-      return slides[0];
-    }
-
-    return slides[slides.length - 1];
-  };
-
-  const slideAutomatically = () => {
-    const { slidingInterval = 0 } = props;
-
-    if (
-      slidingInterval !== null &&
-      slidingInterval !== undefined &&
-      slides.length > 0
-    ) {
-      clearInterval(interval);
-
-      if (slidingInterval > 0) {
-        setIntervalState(
-          setInterval(() => {
-            handleNextSlideClick();
-          }, slidingInterval),
-        );
-      }
-    }
-  };
-
-  const handleNextSlideClick = (
-    _?: React.MouseEvent | null,
-    delayTime = 300,
-  ) => {
+  const goToNextSlide = (delayTime = 300) => {
     const { innerMargin = 0, onSlide } = props;
 
     if (!sliding) {
@@ -280,10 +268,7 @@ const Carousel: FC<CarouselProps> = (props) => {
     }
   };
 
-  const handlePreviousSlideClick = (
-    _?: React.MouseEvent | null,
-    delayTime = 300,
-  ) => {
+  const goToPreviousSlide = (delayTime = 300) => {
     const { innerMargin = 0, onSlide } = props;
 
     if (!sliding) {
@@ -312,6 +297,30 @@ const Carousel: FC<CarouselProps> = (props) => {
     }
   };
 
+  const slideAutomatically = () => {
+    const { slidingInterval = 0 } = props;
+
+    if (
+      slidingInterval !== null &&
+      slidingInterval !== undefined &&
+      slides.length > 0
+    ) {
+      clearInterval(interval);
+
+      if (slidingInterval > 0) {
+        setIntervalState(
+          setInterval(() => {
+            goToNextSlide();
+          }, slidingInterval),
+        );
+      }
+    }
+  };
+
+  const handleIndicatorClick = (index: number) => {
+    goToSlide(index);
+  };
+
   const handleTouchStart = (event: React.TouchEvent) => {
     setInitialTapPosition(event.touches[0].clientX);
   };
@@ -323,9 +332,9 @@ const Carousel: FC<CarouselProps> = (props) => {
 
     if (!sliding) {
       if (newPoint > initialTapPosition + POSITION_ADJUSTMENT) {
-        handlePreviousSlideClick(null, DELAY);
+        goToPreviousSlide(DELAY);
       } else if (newPoint < initialTapPosition - POSITION_ADJUSTMENT) {
-        handleNextSlideClick(null, DELAY);
+        goToNextSlide(DELAY);
       } else {
         slidesContainerNode.current!.style.transition =
           'transform 200ms ease-out';
@@ -339,21 +348,6 @@ const Carousel: FC<CarouselProps> = (props) => {
     if (!sliding) {
       slidesContainerNode.current!.style.transform = `translateX(${newPoint - initialTapPosition}px)`;
     }
-  };
-
-  const storeSlides = () => {
-    if (!children) {
-      return false;
-    }
-
-    const slides = children.map(
-      (child, index): Slide => ({
-        id: child.props.id,
-        position: index,
-      }),
-    );
-
-    setSlides(slides);
   };
 
   const {
@@ -402,7 +396,7 @@ const Carousel: FC<CarouselProps> = (props) => {
               icon="chevron_left"
               className="left-button"
               color="default"
-              onClick={(event) => handlePreviousSlideClick(event)}
+              onClick={() => goToPreviousSlide()}
               {...previousButtonProps}
             />
           </div>
@@ -415,8 +409,8 @@ const Carousel: FC<CarouselProps> = (props) => {
               icon="chevron_right"
               className="right-button"
               color="default"
-              onClick={(event) => {
-                handleNextSlideClick(event);
+              onClick={() => {
+                goToNextSlide();
               }}
               {...nextButtonProps}
             />
