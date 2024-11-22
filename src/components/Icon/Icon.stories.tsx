@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import Icon from './Icon.tsx';
+import { Wrapper } from '../../../.storybook/components/Wrapper.tsx';
+import { CSSProperties } from 'react';
 
 const meta: Meta<typeof Icon> = {
   component: Icon,
@@ -8,8 +10,21 @@ const meta: Meta<typeof Icon> = {
 export default meta;
 type Story = StoryObj<typeof Icon>;
 
+const styles: CSSProperties = {
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  height: '100vh',
+  width: '100vw',
+  flexWrap: 'wrap',
+};
+
 export const Default: Story = {
-  render: ({ name, iconStyle }) => <Icon name={name} iconStyle={iconStyle} />,
+  render: ({ name, iconStyle }) => (
+    <Wrapper style={styles}>
+      <Icon name={name} iconStyle={iconStyle} />
+    </Wrapper>
+  ),
   argTypes: {
     displayName: {
       table: {
@@ -25,14 +40,14 @@ export const Default: Story = {
 
 export const Sizes: Story = {
   render: () => (
-    <div>
+    <Wrapper style={styles}>
       <Icon name="face" style={{ fontSize: '280px' }} />
       <Icon name="face" style={{ fontSize: '168px' }} />
       <Icon name="face" style={{ fontSize: '98px' }} />
       <Icon name="face" style={{ fontSize: '56px' }} />
       <Icon name="face" style={{ fontSize: '28px' }} />
       <Icon name="face" style={{ fontSize: '14px' }} />
-    </div>
+    </Wrapper>
   ),
   parameters: {
     controls: {
@@ -43,7 +58,7 @@ export const Sizes: Story = {
 
 export const Colors: Story = {
   render: () => (
-    <div style={{ fontSize: '56px' }}>
+    <Wrapper style={{ ...styles, fontSize: '56px' }}>
       <Icon
         name="face"
         className="text-brand"
@@ -71,7 +86,7 @@ export const Colors: Story = {
         style={{ fontSize: 'inherit' }}
       />
       <Icon name="face" style={{ fontSize: 'inherit', color: '#f7df1e' }} />
-    </div>
+    </Wrapper>
   ),
   parameters: {
     controls: {
@@ -82,7 +97,7 @@ export const Colors: Story = {
 
 export const Styles: Story = {
   render: () => (
-    <div style={{ fontSize: '56px' }}>
+    <Wrapper style={{ ...styles, fontSize: '56px' }}>
       <Icon name="face" style={{ fontSize: '280px' }} />
       <Icon name="face" style={{ fontSize: '168px' }} />
       <Icon name="face" style={{ fontSize: '98px' }} />
@@ -166,7 +181,7 @@ export const Styles: Story = {
           />
         </div>
       </div>
-    </div>
+    </Wrapper>
   ),
   parameters: {
     controls: {

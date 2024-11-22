@@ -1,4 +1,4 @@
-import {CSSProperties, FC, ReactNode} from "react";
+import { CSSProperties, FC, ReactNode } from 'react';
 
 interface WrapperProps {
   children: ReactNode;
@@ -6,5 +6,5 @@ interface WrapperProps {
 }
 
 export const Wrapper: FC<WrapperProps> = ({ children, style }) => {
-  return <div style={style}>{children}</div>;
+  return <div style={{ padding: '20px', ...style }}>{children}</div>;
 };
