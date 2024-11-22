@@ -9,10 +9,10 @@
   border-bottom: 4px solid v.$brand-info;
   border-left: 4px solid transparent;
   border-radius: 50%;
-  animation: rotate 0.6s linear infinite;
+  animation: rotate 0.7s linear infinite;
 
   circle {
-    animation: dash-md 1.5s ease-in-out infinite;
+    animation: dash-md 2s ease-in-out infinite;
   }
 
   &.eui-spinner-sm {
@@ -21,7 +21,7 @@
     border-width: 3px;
 
     circle {
-      animation: dash-sm 1.5s ease-in-out infinite;
+      animation: dash-sm 2s ease-in-out infinite;
     }
   }
 
@@ -66,24 +66,23 @@
 
   &.eui-spinner-default {
     circle {
-      animation: spinner-colors 6s ease-in-out infinite, dash-md 1.5s ease-in-out infinite;
+      animation: spinner-colors 8s ease-in-out infinite, dash-md 2s ease-in-out infinite;
     }
 
     &.eui-spinner-sm {
       circle {
-        animation: spinner-colors 6s ease-in-out infinite, dash-sm 1.5s ease-in-out infinite;
+        animation: spinner-colors 8s ease-in-out infinite, dash-sm 2s ease-in-out infinite;
       }
     }
 
     &.eui-spinner-lg {
       circle {
-        animation: spinner-colors 6s ease-in-out infinite, dash-lg 1.5s ease-in-out infinite;
+        animation: spinner-colors 8s ease-in-out infinite, dash-lg 2s ease-in-out infinite;
       }
     }
   }
 
   @supports (stroke-dashoffset: 0) and (not (-ms-ime-align: auto)) {
-    animation: rotate 2s linear infinite;
     border: none;
 
     .eui-spinner-path {
@@ -129,11 +128,11 @@
       stroke-dashoffset: 0;
     }
     50% {
-      stroke-dasharray: 190%, 200;
+      stroke-dasharray: 200%, 200;
       stroke-dashoffset: -65%;
     }
     100% {
-      stroke-dasharray: 190%, 200;
+      stroke-dasharray: 200%, 200;
       stroke-dashoffset: -205%;
     }
   }
