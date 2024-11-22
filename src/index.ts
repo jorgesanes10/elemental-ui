@@ -3,6 +3,7 @@ export { default as Animation } from './components/Animation';
 export { default as Avatar } from './components/Avatar';
 export { default as Button } from './components/Button';
 export { default as Carousel } from './components/Carousel';
+export { default as Checkbox } from './components/Checkbox';
 export { default as FloatingActionButton } from './components/FloatingActionButton';
 export { default as Icon } from './components/Icon';
 export { default as IconButton } from './components/IconButton';

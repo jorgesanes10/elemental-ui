@@ -1,0 +1,83 @@
+@use '../../variables' as v;
+@use '../../mixins' as m;
+
+.eui-checkbox {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: baseline;
+  position: relative;
+  font-weight: 500;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  padding: 0 5px 3px 5px;
+  @include m.touch-enhanced();
+
+  & + & {
+    margin-top: -5px;
+  }
+
+  &.focused {
+    box-shadow: v.$focus-shadow;
+  }
+
+  input[type='checkbox'] {
+    position: absolute;
+    margin-left: -20px;
+  }
+
+  label {
+    min-height: v.$line-height-computed;
+    margin-bottom: 0;
+    cursor: pointer;
+  }
+
+  .eui-checkbox-input {
+    height: 10px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    width: 10px;
+
+    &:checked {
+      & ~ .eui-checkbox-check {
+        &::after {
+          opacity: 1;
+        }
+      }
+    }
+
+    &:disabled {
+      & ~ .eui-checkbox-label {
+        color: v.$text-muted;
+      }
+
+      & ~ .eui-checkbox-check {
+        opacity: 0.6;
+      }
+    }
+  }
+
+  .eui-checkbox-check {
+    display: inline-block;
+    position: relative;
+    top: 6px;
+    color: v.$checkbox-border-color;
+
+    &::after {
+      content: 'check_box';
+      font-family: 'Material Icons', serif;
+      position: absolute;
+      color: v.$brand-info;
+      opacity: 0;
+      transition: opacity v.$transition-fast;
+      top: 0;
+      left: 0;
+    }
+  }
+
+  &.eui-has-label {
+    .eui-checkbox-check {
+      margin-right: 15px;
+    }
+  }
+}
