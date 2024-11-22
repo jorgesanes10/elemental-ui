@@ -302,6 +302,26 @@ export const WithMaximumWidth: Story = {
   },
 };
 
+export const SingleSlide: Story = {
+  render: () => (
+    <div style={styles}>
+      <Carousel innerMargin={25} style={{ maxWidth: '1200px' }}>
+        <Panel style={{ width: '40vw' }}>
+          <Panel.Body>
+            <h1>This thing is great</h1>
+            <p>This is the review body, or the testimonial text.</p>
+          </Panel.Body>
+        </Panel>
+      </Carousel>
+    </div>
+  ),
+  parameters: {
+    controls: {
+      disable: true,
+    },
+  },
+};
+
 const DynamicCarousel: FC = () => {
   const [slides, setSlides] = useState([
     <Panel key="slide-0" style={{ width: '40vw' }} id="first">

@@ -53,13 +53,12 @@ const Carousel: FC<CarouselProps> = (props) => {
   const [initialTapPosition, setInitialTapPosition] = useState(0);
   const [slides, setSlides] = useState<Slide[]>([]);
   const [sliding, setSliding] = useState(false);
+  const [interval, setIntervalState] = useState<number | undefined>(undefined);
 
   const currentSlideNode: MutableRefObject<HTMLDivElement | null> =
     useRef(null);
   const slidesContainerNode: MutableRefObject<HTMLDivElement | null> =
     useRef(null);
-
-  let interval: number | undefined = undefined;
 
   useEffect(() => {
     setSlidesWidth();
@@ -75,8 +74,6 @@ const Carousel: FC<CarouselProps> = (props) => {
 
     window.addEventListener('resize', setSlidesWidth);
 
-    slideAutomatically();
-
     return () => {
       window.removeEventListener('resize', setSlidesWidth);
     };
@@ -84,24 +81,18 @@ const Carousel: FC<CarouselProps> = (props) => {
 
   useEffect(() => {
     storeSlides();
-  }, [children, currentSlide]);
-
-  useEffect(() => {
-    clearInterval(interval);
-    slideAutomatically();
-  }, [props.slidingInterval]);
-
-  useEffect(() => {
     generateIndicators(currentSlide);
   }, [children]);
 
+  useEffect(() => {
+    slideAutomatically();
+  }, [props.slidingInterval, slides, currentSlide]);
+
   const setSlidesWidth = () => {
-    setTimeout(() => {
-      const width = Math.floor(
-        findElementNode(currentSlideNode)!.getBoundingClientRect().width,
-      );
-      setSlidesWidthState(width);
-    }, 100);
+    const width = Math.floor(
+      findElementNode(currentSlideNode)!.getBoundingClientRect().width,
+    );
+    setSlidesWidthState(width);
   };
 
   const populateSlides = () => {
@@ -114,52 +105,41 @@ const Carousel: FC<CarouselProps> = (props) => {
     const displaySlides = [];
     const SLIDES_LENGTH = children.length;
 
-    if (!SLIDES_LENGTH) {
-      displaySlides.push(
-        <div key={`slide-${0}`} style={{ margin: innerMargin }}>
-          {React.cloneElement(children[0], {
-            ref: currentSlideNode,
-            key: `current`,
-          })}
-        </div>,
-      );
-    } else {
-      for (let i = currentSlide - 2; i <= currentSlide + 2; i++) {
-        if (children[i]) {
-          const newId = `${children[i].props.id}-${i}`;
+    for (let i = currentSlide - 2; i <= currentSlide + 2; i++) {
+      if (children[i]) {
+        const newId = `${children[i].props.id}-${i}`;
 
-          if (i === currentSlide) {
-            displaySlides.push(
-              getFormattedSlide(
-                i,
-                innerMargin,
-                React.cloneElement(children[i], {
-                  ref: currentSlideNode,
-                  key: `current`,
-                  id: newId,
-                }),
-              ),
-            );
-          } else {
-            displaySlides.push(
-              getFormattedSlide(
-                i,
-                innerMargin,
-                React.cloneElement(children[i], {
-                  id: newId,
-                }),
-              ),
-            );
-          }
-        } else if (i >= SLIDES_LENGTH) {
+        if (i === currentSlide) {
           displaySlides.push(
-            getFormattedSlide(i, innerMargin, children[i - SLIDES_LENGTH]),
+            getFormattedSlide(
+              i,
+              innerMargin,
+              React.cloneElement(children[i], {
+                ref: currentSlideNode,
+                key: `current`,
+                id: newId,
+              }),
+            ),
           );
         } else {
           displaySlides.push(
-            getFormattedSlide(i, innerMargin, children[SLIDES_LENGTH + i]),
+            getFormattedSlide(
+              i,
+              innerMargin,
+              React.cloneElement(children[i], {
+                id: newId,
+              }),
+            ),
           );
         }
+      } else if (i >= SLIDES_LENGTH) {
+        displaySlides.push(
+          getFormattedSlide(i, innerMargin, children[i - SLIDES_LENGTH]),
+        );
+      } else {
+        displaySlides.push(
+          getFormattedSlide(i, innerMargin, children[SLIDES_LENGTH + i]),
+        );
       }
     }
 
@@ -206,7 +186,6 @@ const Carousel: FC<CarouselProps> = (props) => {
 
   const handleIndicatorClick = (index: number) => {
     goToSlide(index);
-    slideAutomatically();
   };
 
   const goToSlide = (slide: number) => {
@@ -229,8 +208,6 @@ const Carousel: FC<CarouselProps> = (props) => {
         slidesContainerNode.current!.style.transform = `scale(1)`;
         slidesContainerNode.current!.style.opacity = `1`;
 
-        console.log('slide', slide);
-
         setCurrentSlide(slide);
         setSliding(false);
       }, 300);
@@ -252,14 +229,22 @@ const Carousel: FC<CarouselProps> = (props) => {
   };
 
   const slideAutomatically = () => {
-    const { slidingInterval } = props;
+    const { slidingInterval = 0 } = props;
 
-    if (slidingInterval) {
+    if (
+      slidingInterval !== null &&
+      slidingInterval !== undefined &&
+      slides.length > 0
+    ) {
       clearInterval(interval);
 
-      interval = setInterval(() => {
-        handleNextSlideClick();
-      }, slidingInterval);
+      if (slidingInterval > 0) {
+        setIntervalState(
+          setInterval(() => {
+            handleNextSlideClick();
+          }, slidingInterval),
+        );
+      }
     }
   };
 
@@ -268,8 +253,6 @@ const Carousel: FC<CarouselProps> = (props) => {
     delayTime = 300,
   ) => {
     const { innerMargin = 0, onSlide } = props;
-
-    slideAutomatically();
 
     if (!sliding) {
       setSliding(true);
@@ -302,8 +285,6 @@ const Carousel: FC<CarouselProps> = (props) => {
     delayTime = 300,
   ) => {
     const { innerMargin = 0, onSlide } = props;
-
-    slideAutomatically();
 
     if (!sliding) {
       setSliding(true);
@@ -434,7 +415,9 @@ const Carousel: FC<CarouselProps> = (props) => {
               icon="chevron_right"
               className="right-button"
               color="default"
-              onClick={(event) => handleNextSlideClick(event)}
+              onClick={(event) => {
+                handleNextSlideClick(event);
+              }}
               {...nextButtonProps}
             />
           </div>
