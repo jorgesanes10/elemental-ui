@@ -1,0 +1,296 @@
+@use '../../variables' as v;
+@use '../../mixins' as m;
+
+.eui-carousel.eui-carousel-default {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+
+  .eui-panel {
+    overflow: hidden;
+    display: flex;
+    height: 100%;
+    margin-bottom: 0;
+
+    figure {
+      min-width: 50%;
+      margin: 0;
+      img {
+        width: 100%;
+        height: 300px;
+        min-height: 100%;
+        object-fit: cover;
+      }
+      + .eui-panel-body {
+        min-width: 50%;
+      }
+    }
+  }
+
+  .left-button-bg {
+    width: 15vw;
+    height: 100%;
+    pointer-events: none;
+    background: -moz-linear-gradient(to left, rgba(242, 244, 248, 1) 0%, rgba(242, 244, 248, 0) 100%);
+    background: -webkit-linear-gradient(to left, rgba(242, 244, 248, 1) 0%, rgba(242, 244, 248, 0) 100%);
+    background: linear-gradient(to right, rgba(242, 244, 248, 1) 0%, rgba(242, 244, 248, 0) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(
+                    startColorstr='#f2f4f8',
+                    endColorstr='#00f2f4f8',
+                    GradientType=1
+    );
+    position: absolute;
+    left: 0;
+    z-index: 10;
+
+    @media (max-width: v.$screen-sm) {
+      display: none;
+    }
+  }
+
+  .right-button-bg {
+    width: 15vw;
+    height: 100%;
+    pointer-events: none;
+    background: -moz-linear-gradient(to left, rgba(242, 244, 248, 0) 0%, rgba(242, 244, 248, 1) 100%);
+    background: -webkit-linear-gradient(to left, rgba(242, 244, 248, 0) 0%, rgba(242, 244, 248, 1) 100%);
+    background: linear-gradient(to right, rgba(242, 244, 248, 0) 0%, rgba(242, 244, 248, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(
+                    startColorstr='#00f2f4f8',
+                    endColorstr='#f2f4f8',
+                    GradientType=1
+    );
+    position: absolute;
+    right: 0;
+    z-index: 10;
+
+    @media (max-width: v.$screen-sm) {
+      display: none;
+    }
+  }
+
+  .eui-floating-action-button {
+    position: absolute;
+    z-index: 1000;
+    top: calc(50% - 46px);
+    pointer-events: auto;
+    background: transparent !important;
+    box-shadow: none;
+    @include m.touch-enhanced();
+
+    &:hover,
+    &:focus {
+      background: transparent !important;
+      box-shadow: none;
+    }
+
+    &:after {
+      border-left: 3px solid v.$brand-info;
+      border-top: 3px solid v.$brand-info;
+      content: '';
+      display: block;
+      height: 20px;
+      position: absolute;
+      top: 20px;
+      transform: rotate(-45deg);
+      transition: transform 0.2s ease-out;
+      width: 20px;
+    }
+
+    i {
+      display: none;
+    }
+
+    &.left-button {
+      left: 20px;
+
+      &:hover:after,
+      &:focus:after {
+        transform: scale(1.5) rotate(-45deg);
+      }
+    }
+
+    &.right-button {
+      right: 20px;
+
+      &:after {
+        transform: rotate(135deg);
+      }
+
+      &:hover:after,
+      &:focus:after {
+        transform: scale(1.5) rotate(135deg);
+      }
+    }
+  }
+
+  .slides-container {
+    display: flex;
+    position: relative;
+    will-change: transform;
+  }
+
+  .indicators-container {
+    display: flex;
+    margin-top: 20px;
+    padding: 5px 0;
+
+    button {
+      background-color: transparent;
+      border: none;
+      -webkit-appearance: none;
+      padding: 5px;
+      @include m.touch-enhanced();
+
+      .indicator {
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+        background-color: #d2dbdb;
+        transition: all 0.2s ease-out;
+
+        &:not(:last-child) {
+          margin-right: 9px;
+        }
+
+        &.active {
+          background-color: v.$brand-info;
+        }
+      }
+
+      &:hover,
+      &:focus {
+        .indicator {
+          transform: scale(1.3) translateY(-2px);
+        }
+      }
+    }
+  }
+}
+
+/** Modern **/
+
+.eui-carousel.eui-carousel-modern {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+
+  .slides-container-panel {
+    max-width: 95%;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+
+    @supports (-webkit-backdrop-filter: blur(5px)) {
+      z-index: unset;
+    }
+
+    border-radius: 9px;
+    box-shadow: 0 7px 26px 0 rgba(0, 0, 0, 0), 0 13px 14px 0 rgba(0, 0, 0, 0.16);
+
+    .slides-container {
+      display: flex;
+      position: relative;
+      left: -200%;
+
+      & > * {
+        min-width: 100%;
+      }
+    }
+
+    .eui-panel {
+      display: flex;
+      height: auto;
+      overflow: hidden;
+      box-shadow: none;
+      margin: 0;
+      border-radius: 0;
+      width: 100% !important;
+
+      figure {
+        min-width: 50%;
+        margin: 0;
+        img {
+          width: 100%;
+          height: 300px;
+          min-height: 100%;
+          object-fit: cover;
+        }
+        + .eui-panel-body {
+          min-width: 50%;
+        }
+      }
+    }
+  }
+
+  .left-button-bg {
+    @media (max-width: v.$screen-sm) {
+      display: none;
+    }
+  }
+
+  .right-button-bg {
+    @media (max-width: v.$screen-sm) {
+      display: none;
+    }
+  }
+
+  .eui-floating-action-button {
+    width: 42px;
+    height: 42px;
+    position: absolute;
+    z-index: 1000;
+    top: calc(50% - 30px);
+
+    i {
+      color: v.$brand-info;
+    }
+
+    &.left-button {
+      left: calc(1% - 3px);
+    }
+
+    &.right-button {
+      right: calc(1% - 3px);
+
+      &:after {
+        transform: rotate(135deg);
+      }
+    }
+  }
+
+  .indicators-container {
+    button {
+      display: none;
+    }
+  }
+}
+
+// Mobile
+@media (max-width: v.$screen-md) {
+  .eui-carousel.eui-carousel-modern,
+  .eui-carousel.eui-carousel-default {
+    .eui-panel {
+      figure {
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media (max-width: v.$screen-sm) {
+  .eui-carousel.eui-carousel-modern,
+  .eui-carousel.eui-carousel-default {
+    .eui-panel {
+      flex-direction: column;
+
+      figure {
+        width: 100%;
+      }
+    }
+  }
+}

@@ -13,7 +13,8 @@ interface FloatingActionButtonRef {
   node: MutableRefObject<HTMLButtonElement | null>;
 }
 
-interface FloatingActionButtonProps extends ComponentPropsWithoutRef<'button'> {
+export interface FloatingActionButtonProps
+  extends ComponentPropsWithoutRef<'button'> {
   color?: 'info' | 'brand' | 'default';
   ariaLabel?: string;
   icon?: string | ReactElement;

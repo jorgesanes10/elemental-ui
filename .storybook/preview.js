@@ -1,5 +1,5 @@
 /** @type { import('@storybook/react').Preview } */
-import '../src/styles.scss'
+import '../src/styles.scss';
 
 const preview = {
   parameters: {
@@ -9,6 +9,7 @@ const preview = {
         date: /Date$/i,
       },
     },
+    layout: 'fullscreen',
   },
 };
 
