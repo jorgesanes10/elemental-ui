@@ -53,8 +53,6 @@ const Button = React.forwardRef<ButtonRef, ButtonProps>((props, ref) => {
     ...rest
   } = props;
 
-  delete rest.displayName;
-
   const btnClass = classnames(
     'eui-btn',
     {

@@ -107,6 +107,7 @@ const Carousel: FC<CarouselProps> = (props) => {
     const width = Math.floor(
       findElementNode(currentSlideNode)!.getBoundingClientRect().width,
     );
+
     setSlidesWidthState(width);
   };
 

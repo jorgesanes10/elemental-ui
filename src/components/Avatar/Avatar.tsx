@@ -5,7 +5,6 @@ interface AvatarProps extends Omit<HTMLProps<HTMLDivElement>, 'size'> {
   title?: string;
   size?: 'xs' | 'sm' | 'md' | 'lg';
   ariaHidden?: boolean;
-  displayName?: string;
 }
 
 const Avatar: FC<AvatarProps> = ({
@@ -65,8 +64,6 @@ const Avatar: FC<AvatarProps> = ({
     return colors[colorIndex];
   }
 
-  delete rest.displayName;
-
   const initials = getInitials(title);
 
   const { background, foreground } = getColorFromInitials(initials);
@@ -91,7 +88,5 @@ const Avatar: FC<AvatarProps> = ({
     </div>
   );
 };
-
-Avatar.displayName = 'Avatar';
 
 export default Avatar;

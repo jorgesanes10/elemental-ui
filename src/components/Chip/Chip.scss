@@ -1,0 +1,120 @@
+@use '../../variables' as v;
+@use '../../mixins' as m;
+
+.eui-chip {
+  background-color: v.$off-white-darker;
+  color: v.$chip-color;
+  font-weight: 600;
+  font-size: 12px;
+  padding: 5px 15px;
+  min-height: 28px;
+  display: flex;
+  align-items: center;
+  border-radius: 100px;
+  position: relative;
+  outline-color: v.$outline-color;
+  @include m.touch-enhanced();
+
+  &:focus {
+    box-shadow: v.$focus-shadow;
+  }
+
+  &.is-dismissible {
+    padding-right: 2px !important;
+  }
+
+  &.has-avatar,
+  &.has-image {
+    padding: 0 1px 0 0;
+
+    .eui-avatar,
+    img {
+      height: 27px;
+      width: 27px;
+      min-width: 27px;
+      margin-right: 10px;
+    }
+  }
+
+  &.has-icon {
+    padding: 0 1px 0 10px;
+
+    & > i {
+      font-size: 18px;
+      margin-right: 10px;
+      color: v.$btn-default-color;
+      padding: 5px 0;
+    }
+  }
+
+  &.eui-chip-lg {
+    font-size: 13px;
+    padding: 8px 18px;
+    height: 34px;
+
+    &.is-dismissible {
+      padding-top: 4px;
+      padding-bottom: 4px;
+      padding-right: 5px !important;
+    }
+
+    &.has-avatar,
+    &.has-image {
+      padding: 0 3px 0 0;
+
+      .eui-avatar {
+        height: 34px;
+        width: 34px;
+        min-width: 34px;
+      }
+
+      img {
+        height: 34px;
+        width: 34px;
+      }
+    }
+
+    &.has-icon {
+      padding: 4px 3px 4px 10px;
+      & > i {
+        font-size: 22px;
+        padding: 0;
+      }
+    }
+
+    & > .eui-chip-btn-dismiss:before {
+      padding: 5px;
+    }
+  }
+
+  img {
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  & > .eui-chip-btn-dismiss {
+    position: relative;
+    top: 1px;
+    color: v.$chip-dismiss-color;
+    opacity: 1;
+    margin-left: 7px;
+
+    &:before {
+      top: -6px;
+      left: -5px;
+      padding: 2px;
+    }
+
+    & > i {
+      font-size: 22px;
+    }
+  }
+
+  &.has-avatar,
+  &.has-image,
+  &.has-icon {
+    &:not(.is-dismissible) {
+      padding-right: 15px;
+    }
+  }
+}
