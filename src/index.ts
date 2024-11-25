@@ -6,6 +6,7 @@ export { default as Carousel } from './components/Carousel';
 export { default as Checkbox } from './components/Checkbox';
 export { default as Chip } from './components/Chip';
 export { default as Col } from './components/Col';
+export { default as Collapsible } from './components/Collapsible';
 export { default as Container } from './components/Container';
 export { default as FloatingActionButton } from './components/FloatingActionButton';
 export { default as Icon } from './components/Icon';
