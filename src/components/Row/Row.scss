@@ -1,0 +1,11 @@
+.eui-row {
+  margin-left: -20px;
+  margin-right: -20px;
+
+  display: flex;
+  flex-wrap: wrap;
+
+  &.eui-row-center-cols {
+    justify-content: center;
+  }
+}

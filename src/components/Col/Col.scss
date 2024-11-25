@@ -1,0 +1,37 @@
+@use '../../variables' as v;
+
+.eui-col {
+  padding: 0 20px;
+  flex-basis: 0;
+  flex-grow: 1;
+  max-width: 100%;
+
+  $sizes: xs sm md lg;
+
+  $values: (
+          xs: v.$screen-xs,
+          sm: v.$screen-sm,
+          md: v.$screen-md,
+          lg: v.$screen-lg,
+  );
+
+  @each $size in $sizes {
+    @media (min-width: map-get($values, $size)) {
+      @for $i from 1 to 13 {
+        &.eui-col-#{$size}-#{$i} {
+          flex-basis: calc(100% / calc(12 / #{$i}));
+          max-width: calc(100% / calc(12 / #{$i}));
+        }
+      }
+    }
+
+    @media (max-width: map-get($values, xs)) {
+      @for $i from 1 to 13 {
+        &.eui-col-xs-#{$i} {
+          flex-basis: calc(100% / calc(12 / #{$i}));
+          max-width: calc(100% / calc(12 / #{$i}));
+        }
+      }
+    }
+  }
+}
