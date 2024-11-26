@@ -11,6 +11,8 @@ export { default as Container } from './components/Container';
 export { default as FloatingActionButton } from './components/FloatingActionButton';
 export { default as Icon } from './components/Icon';
 export { default as IconButton } from './components/IconButton';
+export { default as OverlayTrigger } from './components/OverlayTrigger';
 export { default as Panel } from './components/Panel';
+export { default as Popover } from './components/Popover';
 export { default as Row } from './components/Row';
 export { default as Spinner } from './components/Spinner';

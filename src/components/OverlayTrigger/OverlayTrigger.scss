@@ -1,0 +1,37 @@
+@use '../../variables' as v;
+@use '../../mixins' as m;
+
+.eui-overlay-trigger {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  @include m.touch-enhanced();
+}
+
+.eui-overlay {
+  z-index: v.$z-index-popover;
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity v.$transition-fast;
+  transform: scale(0) translateX(276px);
+  left: -276px;
+  top: 0;
+  max-width: 90vw;
+  max-height: 90vh;
+
+  .eui-popover {
+    position: relative;
+  }
+
+  &.eui-overlay-top {
+    top: 0;
+  }
+}
+
+.eui-overlay.show {
+  opacity: 1;
+  transform: scale(1) translateX(276px);
+  pointer-events: auto;
+}
