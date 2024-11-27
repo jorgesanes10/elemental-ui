@@ -75,12 +75,12 @@
     cursor: default;
     background: v.$bg-light;
 
-    &:hover {
+    &:hover, {
       background: v.$bg-light;
     }
 
     &:focus {
-      background: v.$off-white-dark;
+      background: color.adjust(v.$off-white-dark, $lightness: 2.4%);
     }
   }
 

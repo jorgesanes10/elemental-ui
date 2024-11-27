@@ -35,12 +35,8 @@ const DropdownItem: FC<DropdownItemProps> = (props) => {
   function handleClick(event: MouseEvent<HTMLElement>) {
     const { onClick, onSelect, eventKey, disabled, href } = props;
 
-    if (href === '#') {
+    if (href === '#' || disabled) {
       event.preventDefault();
-    }
-
-    if (disabled) {
-      return;
     }
 
     if (onClick) {
