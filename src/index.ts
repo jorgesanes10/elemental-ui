@@ -9,6 +9,7 @@ export { default as Col } from './components/Col';
 export { default as Collapsible } from './components/Collapsible';
 export { default as Container } from './components/Container';
 export { default as DropdownItem } from './components/DropdownItem';
+export { default as DropdownMenu } from './components/DropdownMenu';
 export { default as FloatingActionButton } from './components/FloatingActionButton';
 export { default as Icon } from './components/Icon';
 export { default as IconButton } from './components/IconButton';

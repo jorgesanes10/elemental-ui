@@ -1,0 +1,65 @@
+@use '../../variables' as v;
+@use '../../mixins' as m;
+
+.eui-dropdown-menu {
+  position: absolute;
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.21);
+  padding: 9px 0;
+  z-index: 1020;
+  min-width: 160px;
+  max-width: none;
+  margin: 2px 0 0;
+  background-color: v.$dropdown-bg;
+  outline: none;
+  border: 0;
+  opacity: 0;
+  pointer-events: none;
+  overflow: hidden;
+  border-radius: v.$border-radius-base;
+
+  @include m.touch-enhanced();
+
+  .eui-overlay-trigger {
+    width: 100%;
+  }
+
+  &.no-height {
+    height: 0;
+  }
+
+  &.show {
+    opacity: 1;
+    pointer-events: auto;
+    height: auto;
+    overflow: visible;
+  }
+
+  &.eui-dropdown-menu-icons > a {
+    position: relative;
+    padding-left: 54px;
+
+    i {
+      position: absolute;
+      left: 20px;
+      margin-top: -1px;
+      top: 10px;
+    }
+  }
+}
+
+.eui-dropdown {
+  .eui-dropdown-menu {
+    will-change: transform, opacity;
+    display: block;
+
+    > button {
+      width: 100%;
+      text-align: left;
+    }
+
+    &.eui-dropdown-menu-right {
+      right: 0;
+      left: auto;
+    }
+  }
+}
