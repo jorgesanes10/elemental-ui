@@ -1,0 +1,26 @@
+@use '../../variables' as v;
+
+.eui-dropdown {
+  display: inline-block;
+  position: relative;
+
+  .eui-dropdown-menu {
+    font-size: v.$font-size-base;
+  }
+
+  @media (max-width: 576px) {
+    position: static;
+
+    .eui-dropdown-menu {
+      top: unset !important;
+      right: unset !important;
+      left: 20px !important;
+      width: calc(100vw - 40px);
+      transform-origin: top !important;
+
+      .eui-dropdown-item {
+        white-space: pre-line;
+      }
+    }
+  }
+}
