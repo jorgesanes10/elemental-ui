@@ -1,0 +1,131 @@
+@use '../../variables' as v;
+@use '../../mixins' as m;
+@use 'sass:color';
+
+.eui-dropdown-item {
+  width: 100%;
+  padding: 10px 28px;
+  background: v.$bg-light;
+  color: v.$gray;
+  transition: all 0.07s ease-out;
+  display: block;
+  white-space: nowrap;
+  border: 0;
+  position: relative;
+  @include m.touch-enhanced();
+
+  &:hover,
+  &:focus,
+  &:active {
+    outline: none;
+    color: v.$gray;
+    text-decoration: none;
+    background: v.$off-white-dark;
+  }
+
+  .eui-icon {
+    position: relative;
+    top: 6px;
+    margin-right: 6px;
+    margin-top: -6px;
+    color: v.$gray-light;
+
+    &.pull-right {
+      margin-left: 10px;
+      margin-right: -8px;
+    }
+  }
+
+  &.eui-dropdown-item-info,
+  &.eui-dropdown-item-info > .eui-icon {
+    color: v.$brand-info;
+  }
+
+  &.eui-dropdown-item-success,
+  &.eui-dropdown-item-success > .eui-icon {
+    color: v.$brand-success;
+  }
+
+  &.eui-dropdown-item-warning,
+  &.eui-dropdown-item-warning > .eui-icon {
+    color: v.$brand-warning;
+  }
+
+  &.eui-dropdown-item-danger,
+  &.eui-dropdown-item-danger > .eui-icon {
+    color: v.$brand-danger;
+  }
+
+  &.active {
+    background: v.$brand-info;
+    color: v.$text-white;
+
+    &:focus,
+    &:hover {
+      background: color.adjust(v.$brand-info, $lightness: -10%);
+    }
+
+    & > .eui-icon {
+      color: v.$text-white;
+    }
+  }
+
+  &.disabled {
+    color: v.$gray-lightest;
+    cursor: default;
+    background: v.$bg-light;
+
+    &:hover {
+      background: v.$bg-light;
+    }
+
+    &:focus {
+      background: v.$off-white-dark;
+    }
+  }
+
+  .eui-dropdown-item-tooltip {
+    position: absolute;
+    display: block;
+    pointer-events: none;
+    white-space: pre-wrap;
+    background: v.$tooltip-bg;
+    color: v.$popover-color-dark;
+    padding: 5px 10px;
+    top: 5px;
+    left: calc(100% - 10px);
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: all 0.2s ease-out;
+    max-width: 260px;
+    width: 260px;
+    z-index: 1000000;
+
+    &.in {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  &.separator {
+    padding: 0;
+    background: v.$off-white-darker;
+    margin: 10px 0;
+    height: 1px;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  &.header {
+    padding: 9px 28px 10px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: v.$gray-lighter;
+    white-space: nowrap;
+    line-height: 1.42857;
+    background: v.$bg-light;
+    pointer-events: none;
+    letter-spacing: 0.46px;
+  }
+}
