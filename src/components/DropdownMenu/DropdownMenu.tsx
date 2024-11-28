@@ -119,26 +119,21 @@ const DropdownMenu = forwardRef<DropdownMenuRef, DropdownMenuProps>(
     const handleKeyDown = (event: KeyboardEvent) => {
       const { onHide, show } = props;
 
-      const keyCodes = {
-        UP_ARROW: 38,
-        DOWN_ARROW: 40,
-        ESCAPE: 27,
-        TAB: 9,
-      };
+      console.log(event.key);
 
       if (show) {
-        switch (event.keyCode) {
-          case event.shiftKey && keyCodes.TAB:
-          case keyCodes.UP_ARROW:
+        switch (event.key) {
+          case event.shiftKey && 'Tab':
+          case 'ArrowUp':
             focusPreviousChild();
             event.preventDefault();
             break;
-          case keyCodes.DOWN_ARROW:
-          case keyCodes.TAB:
+          case 'ArrowDown':
+          case 'Tab':
             focusNextChild();
             event.preventDefault();
             break;
-          case keyCodes.ESCAPE:
+          case 'Escape':
             if (onHide) {
               onHide(event, 'keyDown');
             }

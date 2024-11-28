@@ -352,7 +352,7 @@ const Carousel: FC<CarouselProps> = (props) => {
         goToNextSlide(DELAY);
       } else {
         slidesContainerNode.current!.style.transition =
-          'transform 200ms ease-out';
+          'transform 200 ms ease-out';
         slidesContainerNode.current!.style.transform = `translateX(0)`;
       }
     }

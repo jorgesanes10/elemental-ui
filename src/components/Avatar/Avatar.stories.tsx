@@ -38,11 +38,6 @@ export const Default: Story = {
         disable: true,
       },
     },
-    displayName: {
-      table: {
-        disable: true,
-      },
-    },
   },
   args: {
     title: 'User Name',
