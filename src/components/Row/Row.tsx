@@ -1,5 +1,5 @@
-import classnames from 'classnames';
 import { FC, HTMLProps } from 'react';
+import classnames from 'classnames';
 
 interface RowProps extends HTMLProps<HTMLDivElement> {
   center?: boolean;

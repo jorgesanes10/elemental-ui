@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import ExpansionPanel from './ExpansionPanel';
-import { Button, Panel } from '../../index.ts';
 import { FC, useEffect, useState } from 'react';
+import { ExpansionPanel, Button, Panel } from '../../index.ts';
 
 const meta: Meta<typeof ExpansionPanel> = {
   component: ExpansionPanel,

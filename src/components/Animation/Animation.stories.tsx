@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Animation from './Animation';
 import { useState } from 'react';
-import { Button, Panel } from '../../index.ts';
+import { Animation, Button, Panel } from '../../index.ts';
 
 const meta: Meta<typeof Animation> = {
   component: Animation,

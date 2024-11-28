@@ -1,6 +1,6 @@
 import { CSSProperties } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import FloatingActionButton from './FloatingActionButton.tsx';
+import { FloatingActionButton } from '../../index.ts';
 
 const meta: Meta<typeof FloatingActionButton> = {
   component: FloatingActionButton,

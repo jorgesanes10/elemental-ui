@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Chip, { ChipProps } from './Chip.tsx';
-import { Avatar, Icon } from '../../index.ts';
 import photoAvatar from '../../../.storybook/assets/photo-avatar.png';
+import { Avatar, Chip, Icon } from '../../index.ts';
+import { ChipProps } from './Chip.tsx';
 
 const meta: Meta<typeof Chip> = {
   component: Chip,

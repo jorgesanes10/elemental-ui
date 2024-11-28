@@ -15,7 +15,7 @@ import classnames from 'classnames';
 import FloatingActionButton from '../FloatingActionButton';
 import Panel from '../Panel';
 import findElementNode from '../../utils/findElementNode';
-import { FloatingActionButtonProps } from '../FloatingActionButton/FloatingActionButton.tsx';
+import { FloatingActionButtonProps } from '../FloatingActionButton/FloatingActionButton';
 
 type Slide = {
   id: string;

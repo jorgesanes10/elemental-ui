@@ -1,5 +1,5 @@
-import classnames from 'classnames';
 import { FC, HTMLProps } from 'react';
+import classnames from 'classnames';
 
 interface ContainerProps extends HTMLProps<HTMLDivElement> {
   narrow?: boolean;

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Button, { ButtonProps } from './Button.tsx';
 import { CSSProperties } from 'react';
-import { Icon, Panel } from '../../index.ts';
+import { Button, Icon, Panel } from '../../index.ts';
+import { ButtonProps } from './Button.tsx';
 
 const meta: Meta<typeof Button> = {
   component: Button,

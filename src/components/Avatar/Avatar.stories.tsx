@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Avatar from './Avatar';
-import { Panel } from '../../index.ts';
+import { Avatar, Panel } from '../../index.ts';
 
 const meta: Meta<typeof Avatar> = {
   component: Avatar,

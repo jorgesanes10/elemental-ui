@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Collapsible from './Collapsible.tsx';
-import { Button, Panel } from '../../index.ts';
 import { FC, useState } from 'react';
+import { Collapsible, Button, Panel } from '../../index.ts';
 
 const meta: Meta<typeof Collapsible> = {
   component: Collapsible,

@@ -1,7 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import OverlayTrigger from './OverlayTrigger';
-import { Button, IconButton, Panel, Popover } from '../../index.ts';
 import { FC, useState } from 'react';
+import {
+  OverlayTrigger,
+  Button,
+  IconButton,
+  Panel,
+  Popover,
+} from '../../index.ts';
 
 const meta: Meta<typeof OverlayTrigger> = {
   component: OverlayTrigger,

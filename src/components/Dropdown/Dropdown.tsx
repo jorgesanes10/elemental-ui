@@ -10,15 +10,13 @@ import {
   useRef,
   useState,
 } from 'react';
-import {
-  Button,
-  DropdownMenu,
-  DropdownItem,
-  IconButton,
-  FloatingActionButton,
-} from '../../index.ts';
-import findElementNode from '../../utils/findElementNode.ts';
 import classnames from 'classnames';
+import findElementNode from '../../utils/findElementNode.ts';
+import DropdownMenu from '../DropdownMenu';
+import DropdownItem from '../DropdownItem';
+import Button from '../Button';
+import IconButton from '../IconButton';
+import FloatingActionButton from '../FloatingActionButton';
 
 interface DropdownProps extends Omit<HTMLProps<HTMLDivElement>, 'onSelect'> {
   toggleOnHover?: boolean;
@@ -261,7 +259,7 @@ const Dropdown: FC<DropdownProps> = (props) => {
   );
 };
 
-const Menu = DropdownMenu;
-const Item = DropdownItem;
-
-export default Object.assign(Dropdown, { Menu, Item });
+export default Object.assign(Dropdown, {
+  Menu: DropdownMenu,
+  Item: DropdownItem,
+});

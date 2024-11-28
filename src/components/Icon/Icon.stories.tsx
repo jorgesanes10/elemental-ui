@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Icon from './Icon.tsx';
-import { Wrapper } from '../../../.storybook/components/Wrapper.tsx';
 import { CSSProperties } from 'react';
+import { Wrapper } from '../../../.storybook/components/Wrapper.tsx';
+import { Icon } from '../../index.ts';
 
 const meta: Meta<typeof Icon> = {
   component: Icon,

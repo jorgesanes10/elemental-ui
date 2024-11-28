@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import IconButton from './IconButton.tsx';
+import { IconButton } from '../../index.ts';
 
 const meta: Meta<typeof IconButton> = {
   component: IconButton,

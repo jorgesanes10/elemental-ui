@@ -1,7 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import Carousel from './Carousel.tsx';
-import { Button, Panel } from '../../index.ts';
 import { FC, Fragment, useState } from 'react';
+import type { Meta, StoryObj } from '@storybook/react';
+import { Carousel, Button, Panel } from '../../index.ts';
 
 const meta: Meta<typeof Carousel> = {
   component: Carousel,

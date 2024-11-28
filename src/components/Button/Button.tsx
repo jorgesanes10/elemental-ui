@@ -5,8 +5,8 @@ import React, {
   MutableRefObject,
   ComponentPropsWithoutRef,
 } from 'react';
-import Spinner from '../Spinner';
 import classnames from 'classnames';
+import Spinner from '../Spinner';
 import findElementNode from '../../utils/findElementNode.ts';
 
 interface ButtonRef {

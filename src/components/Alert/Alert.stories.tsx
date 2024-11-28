@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Alert, { AlertProps } from './Alert.tsx';
-import { Button, Panel } from '../../index.ts';
+import { Alert, Button, Panel } from '../../index.ts';
 import { Wrapper } from '../../../.storybook/components/Wrapper.tsx';
+import { AlertProps } from './Alert.tsx';
 
 const meta: Meta<typeof Alert> = {
   component: Alert,

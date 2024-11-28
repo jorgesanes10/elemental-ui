@@ -11,7 +11,7 @@ import React, {
 import ReactDom from 'react-dom';
 import classnames from 'classnames';
 import findElementNode from '../../utils/findElementNode';
-import { Popover } from '../../index.ts';
+import Popover from '../Popover';
 
 interface OverlayTriggerProps extends HTMLProps<HTMLDivElement> {
   overlay: string | ReactNode;

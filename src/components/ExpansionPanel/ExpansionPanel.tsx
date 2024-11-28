@@ -13,13 +13,12 @@ import React, {
   HTMLAttributes,
 } from 'react';
 import classnames from 'classnames';
-import { Panel, IconButton } from '../../index';
 import Collapsible from '../Collapsible';
 import simpleComponentFactory from '../../utils/simpleComponentFactory';
 import { usePrevious } from '../../utils/customHooks';
 import findElementNode from '../../utils/findElementNode';
-import { PanelProps } from '../Panel/Panel.tsx';
-import { IconButtonRef } from '../IconButton/IconButton.tsx';
+import Panel, { PanelProps } from '../Panel/Panel';
+import IconButton, { IconButtonRef } from '../IconButton/IconButton';
 
 interface ExpansionPanelProps extends PanelProps {
   defaultExpanded?: boolean;

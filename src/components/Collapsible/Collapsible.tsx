@@ -6,8 +6,8 @@ import {
   useRef,
   useState,
 } from 'react';
-import findElementNode from '../../utils/findElementNode.ts';
 import classnames from 'classnames';
+import findElementNode from '../../utils/findElementNode.ts';
 
 interface CollapsibleProps extends HTMLProps<HTMLDivElement> {
   expanded?: boolean;

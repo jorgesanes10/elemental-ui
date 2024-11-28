@@ -1,5 +1,5 @@
-import classnames from 'classnames';
 import { ComponentPropsWithoutRef, FC } from 'react';
+import classnames from 'classnames';
 
 type Color = 'default' | 'info' | 'success' | 'danger' | 'warning' | 'brand';
 

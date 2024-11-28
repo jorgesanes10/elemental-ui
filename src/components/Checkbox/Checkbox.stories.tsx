@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import Checkbox from './Checkbox.tsx';
 import React, { CSSProperties, FC, useEffect, useState } from 'react';
+import type { Meta, StoryObj } from '@storybook/react';
+import { Checkbox } from '../../index.ts';
 
 const meta: Meta<typeof Checkbox> = {
   component: Checkbox,

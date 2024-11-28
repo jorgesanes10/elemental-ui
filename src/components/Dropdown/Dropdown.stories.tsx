@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Dropdown from './Dropdown';
 import {
   Button,
   DropdownItem,
   DropdownMenu,
   FloatingActionButton,
   Icon,
+  Dropdown,
 } from '../../index.ts';
 
 const meta: Meta<typeof Dropdown> = {

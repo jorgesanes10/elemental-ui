@@ -6,10 +6,10 @@ import {
   KeyboardEvent,
   FocusEvent,
 } from 'react';
+import classnames from 'classnames';
 import Icon from '../Icon';
 import OverlayTrigger from '../OverlayTrigger';
 import Popover from '../Popover';
-import classnames from 'classnames';
 
 type DropdownItemProps = Omit<HTMLAttributes<HTMLElement>, 'onSelect'> & {
   active?: boolean;

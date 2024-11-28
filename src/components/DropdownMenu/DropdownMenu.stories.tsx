@@ -1,7 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import DropdownMenu from './DropdownMenu';
 import { HTMLProps } from 'react';
-import { DropdownItem, Icon } from '../../index.ts';
+import type { Meta, StoryObj } from '@storybook/react';
+import { DropdownMenu, DropdownItem, Icon } from '../../index.ts';
 
 const meta: Meta<typeof DropdownMenu> = {
   component: DropdownMenu,
