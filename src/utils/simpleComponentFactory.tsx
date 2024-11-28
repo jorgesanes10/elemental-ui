@@ -8,7 +8,7 @@ interface ComponentProps extends HTMLProps<HTMLElement> {
 export default (
   Component: ElementType,
   name: string,
-  componentClass: string,
+  componentClass?: string,
   warning?: string,
 ) => {
   const SimpleComponent: FC<ComponentProps> = ({
@@ -20,10 +20,12 @@ export default (
       console.error(warning);
     }
 
-    delete rest.displayName;
-
     return (
-      <Component {...rest} className={classnames(componentClass, className)}>
+      <Component
+        {...rest}
+        name={name}
+        className={classnames(componentClass, className)}
+      >
         {children}
       </Component>
     );

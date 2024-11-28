@@ -9,7 +9,7 @@ import classnames from 'classnames';
 import Icon from '../Icon';
 import findElementNode from '../../utils/findElementNode.ts';
 
-interface IconButtonRef {
+export interface IconButtonRef {
   node: MutableRefObject<HTMLButtonElement | null>;
 }
 

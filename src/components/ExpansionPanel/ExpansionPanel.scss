@@ -1,0 +1,192 @@
+@use '../../variables' as v;
+@use '../../mixins' as m;
+
+$transition-time: 0.1s ease-out;
+$default-border: 1px solid v.$off-white-darker;
+
+.eui-expansion-panel {
+  &.eui-panel {
+    margin-bottom: 0;
+    border-radius: 0;
+    transition: all $transition-time;
+    position: relative;
+    width: 100%;
+    left: 0;
+    will-change: transform;
+    font-size: 14px;
+  }
+
+  &:last-child > .eui-panel-body > .eui-expansion-panel-toggle {
+    border-bottom: none;
+  }
+
+  &.expanded {
+    &.grow-horizontally {
+      width: 106%;
+      left: -3%;
+    }
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+
+      & > .eui-panel-body > .eui-expansion-panel-toggle:not(.reversed) {
+        border-bottom: $default-border;
+      }
+    }
+
+    margin-bottom: 11px;
+    margin-top: 11px;
+
+    > .eui-panel-body > .eui-expansion-panel-toggle {
+      &.reversed {
+        border-top: $default-border;
+      }
+
+      &.hide-on-expand {
+        max-height: 0;
+        opacity: 0;
+        padding: 0 60px 0 25px;
+        overflow: hidden;
+        border: none !important;
+        background-color: rgba(0, 0, 0, 0.02);
+
+        &:after {
+          opacity: 0;
+        }
+      }
+
+      &:after {
+        transform: rotate(135deg);
+      }
+
+      @include m.touch-enhanced();
+    }
+  }
+
+  &.eui-expansion-panel-reversed > .eui-panel-body {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  & > .eui-panel-body {
+    padding: 0 !important;
+
+    .btn-collapse {
+      position: absolute;
+      top: 24px;
+      right: 20px;
+      color: v.$gray-lighter;
+    }
+
+    & > .eui-expansion-panel-toggle {
+      display: block;
+      padding: 15px 60px 15px 25px;
+      max-height: 150px;
+      opacity: 1;
+      text-decoration: none;
+      color: inherit;
+      background-color: inherit;
+      position: relative;
+      border-bottom: $default-border;
+
+      z-index: 1;
+      text-align: left;
+      width: 100%;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      transition: max-height $transition-time, padding $transition-time, opacity 0.3s ease-out;
+
+      @include m.touch-enhanced();
+
+      &:hover,
+      &:active {
+        background-color: rgba(0, 0, 0, 0.02);
+      }
+
+      &:focus {
+        background-color: rgba(0, 0, 0, 0.02);
+        box-shadow: v.$focus-shadow-inset;
+        outline: none;
+      }
+
+      &:focus:not(:focus-visible) {
+        box-shadow: none;
+        outline: none;
+      }
+
+      &:focus-visible {
+        box-shadow: v.$focus-shadow-inset;
+      }
+
+      &:after {
+        content: '';
+        width: 8px;
+        height: 8px;
+        border-left: 2px solid v.$gray-lighter;
+        border-bottom: 2px solid v.$gray-lighter;
+        position: absolute;
+        transform: rotate(-45deg);
+        top: 44%;
+        right: 28px;
+        pointer-events: none;
+        transition: transform $transition-time, opacity $transition-time;
+      }
+
+      &.no-caret:after {
+        display: none;
+      }
+
+      div,
+      p,
+      span {
+        transform: translateZ(0);
+      }
+    }
+
+    .eui-panel {
+      margin: 0;
+      box-shadow: none;
+
+      & > .eui-panel-collapse > table {
+        tr {
+          border-left: none;
+          border-right: none;
+        }
+      }
+
+      & > table > thead > tr {
+        border-top: none;
+      }
+
+      .eui-panel-body {
+        padding-left: 25px;
+        padding-top: 24px;
+        padding-right: 60px;
+      }
+    }
+  }
+
+  .eui-info-panel {
+    &.eui-panel {
+      .eui-panel-body {
+        padding: 0;
+
+        .eui-info-panel-toggle-button {
+          top: -1px;
+          right: 0;
+        }
+      }
+    }
+  }
+
+  &.no-padding {
+    .eui-panel-body {
+      padding: 0 !important;
+    }
+  }
+}
