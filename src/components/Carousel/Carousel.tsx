@@ -80,8 +80,10 @@ const Carousel: FC<CarouselProps> = (props) => {
   }, []);
 
   useEffect(() => {
-    storeSlides();
-    generateIndicators(currentSlide);
+    if (children.length > 1) {
+      storeSlides();
+      generateIndicators(currentSlide);
+    }
   }, [children]);
 
   useEffect(() => {
@@ -120,6 +122,18 @@ const Carousel: FC<CarouselProps> = (props) => {
 
     const displaySlides = [];
     const SLIDES_LENGTH = children.length;
+
+    if (SLIDES_LENGTH === 1) {
+      return getFormattedSlide(
+        0,
+        innerMargin,
+        React.cloneElement(children[0], {
+          ref: currentSlideNode,
+          key: `current`,
+          id: `${children[0].props.id}-${0}`,
+        }),
+      );
+    }
 
     for (let i = currentSlide - 2; i <= currentSlide + 2; i++) {
       if (children[i]) {
@@ -163,7 +177,7 @@ const Carousel: FC<CarouselProps> = (props) => {
   };
 
   const generateIndicators = (currentSlide: number) => {
-    if (!children) {
+    if (!children || children.length === 1) {
       return;
     }
 
