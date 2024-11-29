@@ -1,0 +1,74 @@
+@use '../../variables' as v;
+
+.eui-expansion-panel-group {
+  .eui-expansion-panel {
+    border-radius: 0;
+
+    &:first-child {
+      border-radius: v.$border-radius-base v.$border-radius-base 0 0;
+    }
+
+    &:last-child {
+      border-radius: 0 0 v.$border-radius-base v.$border-radius-base;
+    }
+
+    &.expanded {
+      border-radius: v.$border-radius-base;
+      border-bottom: none;
+    }
+
+    &:not(:last-child):not(.expanded) {
+      box-shadow: none;
+    }
+  }
+
+  &.unify-panels {
+    .eui-expansion-panel {
+      &:not(:first-child) {
+        margin-top: -1px;
+      }
+
+      &:first-child .eui-expansion-panel-toggle {
+        padding-top: 27px;
+      }
+
+      .eui-expansion-panel-toggle {
+        border-bottom: none !important;
+
+        &:hover {
+          background-color: v.$bg-light;
+        }
+
+        padding-top: 14px;
+        padding-bottom: 14px;
+
+        &:after {
+          display: none;
+        }
+      }
+
+      &:last-child .eui-expansion-panel-toggle {
+        padding-bottom: 27px;
+      }
+
+      &.expanded {
+        margin-top: 20px;
+        margin-bottom: 20px;
+
+        .eui-expansion-panel-toggle {
+          border: none !important;
+        }
+
+        &:last-child .eui-expansion-panel-toggle {
+          padding-bottom: 0;
+        }
+      }
+
+      &.expanded {
+        .eui-expansion-panel-toggle {
+          padding-top: 28px;
+        }
+      }
+    }
+  }
+}
