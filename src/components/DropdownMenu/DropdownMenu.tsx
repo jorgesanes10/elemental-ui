@@ -148,6 +148,7 @@ const DropdownMenu = forwardRef<DropdownMenuRef, DropdownMenuProps>(
       eventKey: string,
       event: MouseEvent,
       eventType: 'keyDown' | 'click',
+      childOnSelect: (eventKey: string, event: MouseEvent) => void,
     ) => {
       const { onSelect, onHide } = props;
 
@@ -159,9 +160,9 @@ const DropdownMenu = forwardRef<DropdownMenuRef, DropdownMenuProps>(
         onHide(event, eventType);
       }
 
-      // if (childOnSelect) {
-      //   childOnSelect(eventKey, event);
-      // }
+      if (childOnSelect) {
+        childOnSelect(eventKey, event);
+      }
     };
 
     const renderChildren = () => {

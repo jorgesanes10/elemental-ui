@@ -50,9 +50,11 @@ const Avatar: FC<AvatarProps> = ({
 
     for (let i = 0; i < initialsLength; i++) {
       let initialCode = lowercaseInitials.charCodeAt(i) - 97;
+
       if (initialCode < 0 || initialCode > 26) {
         initialCode = 0;
       }
+
       colorIndex += initialCode;
     }
 

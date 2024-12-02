@@ -85,7 +85,6 @@ const OverlayTrigger: FC<OverlayTriggerProps> = (props) => {
   }, [show]);
 
   useEffect(() => {
-    positionOverlay();
     setOverlayStyles();
   }, [placement]);
 
@@ -426,42 +425,37 @@ const OverlayTrigger: FC<OverlayTriggerProps> = (props) => {
   const renderChildrenWithProps = () => {
     const { triggerType = 'click', children } = props;
 
-    if (!children) {
+    if (!children || !children.props) {
       return;
     }
 
-    if (children.props) {
-      let props;
-      if (triggerType === 'click') {
-        props = {
-          onClick: handleClick.bind(null, children.props.onClick),
-        };
-      } else {
-        props = {
-          onMouseEnter: handleMouseEnter.bind(
-            null,
-            children.props.onMouseEnter,
-          ),
-          onFocus: handleMouseEnter.bind(null, children.props.onMouseEnter),
-          onMouseLeave: handleMouseLeave.bind(
-            null,
-            children.props.onMouseLeave,
-          ),
-          onBlur: handleMouseLeave.bind(null, children.props.onMouseLeave),
-        };
-      }
+    // if (children.props) {
+    let childProps;
 
-      return React.cloneElement(children, {
-        className: classnames(
-          'eui-overlay-trigger-trigger',
-          children.props.className,
-        ),
-        ref: triggerNode,
-        ...props,
-      });
+    if (triggerType === 'click') {
+      childProps = {
+        onClick: handleClick.bind(null, children.props.onClick),
+      };
+    } else {
+      childProps = {
+        onMouseEnter: handleMouseEnter.bind(null, children.props.onMouseEnter),
+        onFocus: handleMouseEnter.bind(null, children.props.onMouseEnter),
+        onMouseLeave: handleMouseLeave.bind(null, children.props.onMouseLeave),
+        onBlur: handleMouseLeave.bind(null, children.props.onMouseLeave),
+      };
     }
 
-    return children;
+    return React.cloneElement(children, {
+      className: classnames(
+        'eui-overlay-trigger-trigger',
+        children.props.className,
+      ),
+      ref: triggerNode,
+      ...childProps,
+    });
+    // }
+
+    // return children;
   };
 
   const renderOverlayWithProps = () => {
