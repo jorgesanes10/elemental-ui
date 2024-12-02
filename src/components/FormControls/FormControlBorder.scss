@@ -1,0 +1,94 @@
+@use '../../variables' as v;
+
+.eui-form-control-border {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  pointer-events: none;
+
+  .eui-form-control-border-part {
+    transition: border-color v.$transition-fast;
+  }
+
+  .eui-form-control-border-part:nth-child(1) {
+    border-top: 1px solid v.$input-border;
+    border-left: 1px solid v.$input-border;
+    border-bottom: 1px solid v.$input-border;
+    border-top-left-radius: v.$border-radius-base;
+    border-bottom-left-radius: v.$border-radius-base;
+    width: 12px;
+  }
+
+  .eui-form-control-border-part:nth-child(2) {
+    border-color: v.$input-border;
+    border-bottom: 1px solid v.$input-border;
+
+    label {
+      position: relative;
+      top: -12px;
+      left: 0;
+      font-size: v.$label-font-size;
+      font-weight: 500;
+      color: v.$input-label-color;
+      white-space: nowrap;
+      margin: 0;
+      padding: 0 4px;
+      transition: color v.$transition-fast;
+    }
+  }
+
+  .eui-form-control-border-part:nth-child(3) {
+    border-color: v.$input-border;
+    flex-grow: 1;
+    border-bottom: 1px solid v.$input-border;
+    border-top: 1px solid v.$input-border;
+    border-right: 1px solid v.$input-border;
+    border-top-right-radius: v.$border-radius-base;
+    border-bottom-right-radius: v.$border-radius-base;
+  }
+
+  &.focused {
+    .eui-form-control-border-part {
+      border-color: v.$brand-info;
+      border-width: 2px;
+
+      label {
+        color: v.$brand-info;
+      }
+    }
+  }
+
+  &.error {
+    .eui-form-control-border-part {
+      border-color: v.$brand-danger;
+
+      label {
+        color: v.$brand-danger;
+        animation: shakeWithValue 0.3s 1 ease;
+      }
+    }
+  }
+}
+
+@keyframes shakeWithValue {
+  0% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(5px);
+  }
+
+  75% {
+    transform: translateX(-5px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}

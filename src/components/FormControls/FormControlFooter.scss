@@ -1,0 +1,70 @@
+@use '../../variables' as v;
+
+.eui-form-control-footer {
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+
+  .eui-form-control-message {
+    margin-left: 16px;
+  }
+
+  .eui-form-control-message,
+  .eui-form-control-counter {
+    display: block;
+    color: v.$input-label-color;
+    font-size: 11px;
+    margin-top: 3px;
+    min-height: 15px;
+    transition: transform v.$transition-fast;
+
+    &.input-full {
+      animation: shakeWithValue 0.3s 1 ease;
+    }
+  }
+
+  .eui-form-control-counter {
+    position: absolute;
+    right: 0;
+
+    ~ .eui-form-control-message {
+      padding-right: 44px;
+    }
+  }
+
+  .eui-form-control-error-message {
+    position: absolute;
+    left: 0;
+  }
+
+  .eui-form-control-message {
+    transform: translateZ(0) translateY(-7px);
+    opacity: 0;
+    will-change: transition;
+    transition: all v.$transition-fast;
+    position: absolute;
+
+    &.has-message {
+      transform: translateZ(0) translateY(0);
+      opacity: 1;
+    }
+  }
+
+  &.error {
+    .eui-form-control-help-text {
+      transform: translateZ(0) translateY(-7px);
+      opacity: 0;
+    }
+
+    .eui-form-control-error-message {
+      color: v.$brand-danger;
+
+      i {
+        font-size: inherit;
+        position: relative;
+        top: 1px;
+        margin-right: 3px;
+      }
+    }
+  }
+}
