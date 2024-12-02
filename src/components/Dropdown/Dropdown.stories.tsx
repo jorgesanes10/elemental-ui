@@ -6,6 +6,7 @@ import {
   FloatingActionButton,
   Icon,
   Dropdown,
+  IconButton,
 } from '../../index.ts';
 
 const meta: Meta<typeof Dropdown> = {
@@ -163,4 +164,21 @@ export const WithFloatingActionButtons: Story = {
       disable: true,
     },
   },
+};
+
+export const IconDropdown: Story = {
+  render: () => (
+    <div style={styles}>
+      <Dropdown>
+        <IconButton icon="more_horiz" />
+        <DropdownMenu style={{ top: '-5px', left: '-5px' }}>
+          <Dropdown.Item isHeader>Menu header</Dropdown.Item>
+          <Dropdown.Item>Action 1</Dropdown.Item>
+          <Dropdown.Item>Action 2</Dropdown.Item>
+          <Dropdown.Item>Action 3</Dropdown.Item>
+          <Dropdown.Item>Action 4</Dropdown.Item>
+        </DropdownMenu>
+      </Dropdown>
+    </div>
+  ),
 };
