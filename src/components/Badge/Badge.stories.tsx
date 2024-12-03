@@ -54,4 +54,9 @@ export const Styles: Story = {
       </Badge>
     </div>
   ),
+  parameters: {
+    controls: {
+      disable: true,
+    },
+  },
 };
