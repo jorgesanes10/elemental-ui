@@ -1,0 +1,35 @@
+@use '../../variables' as v;
+
+.eui-badge {
+  border-radius: 2px;
+  color: v.$text-white;
+  font-size: 14px;
+  font-weight: 800;
+  min-width: 74px;
+  line-height: 18px;
+  padding: 3px 5px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+
+  &.eui-badge-default {
+    background-color: v.$label-default-bg;
+  }
+
+  &.eui-badge-info {
+    background-color: v.$brand-info;
+  }
+
+  &.eui-badge-warning {
+    background-color: v.$brand-warning;
+    color: v.$gray-dark;
+  }
+
+  &.eui-badge-danger {
+    background-color: v.$brand-danger;
+  }
+
+  &.eui-badge-success {
+    background-color: v.$brand-success;
+  }
+}
