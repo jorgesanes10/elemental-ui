@@ -7,6 +7,7 @@ import {
   MutableRefObject,
   ReactElement,
   useEffect,
+  useLayoutEffect,
   useRef,
   useState,
 } from 'react';
@@ -37,7 +38,7 @@ const Dropdown: FC<DropdownProps> = (props) => {
     useRef(null);
   const toggleNode: MutableRefObject<HTMLElement | null> = useRef(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     toggleNode.current = findElementNode(toggleNode) as HTMLElement;
     dropdownNode.current = findElementNode(dropdownNode) as HTMLDivElement;
     dropdownMenuNode.current = findElementNode(
@@ -45,7 +46,9 @@ const Dropdown: FC<DropdownProps> = (props) => {
     ) as HTMLDivElement;
 
     flipMenu();
+  }, []);
 
+  useEffect(() => {
     window.addEventListener('click', handleOuterClick, true);
     window.addEventListener('resize', flipMenu);
 

@@ -12,6 +12,7 @@ import {
   forwardRef,
   ComponentPropsWithoutRef,
   useImperativeHandle,
+  useLayoutEffect,
 } from 'react';
 import classnames from 'classnames';
 import findElementNode from '../../utils/findElementNode.ts';
@@ -45,7 +46,7 @@ const DropdownMenu = forwardRef<DropdownMenuRef, DropdownMenuProps>(
       node: dropdownMenuNode,
     }));
 
-    useEffect(() => {
+    useLayoutEffect(() => {
       dropdownMenuNode.current = findElementNode(
         dropdownMenuNode,
       ) as HTMLDivElement;

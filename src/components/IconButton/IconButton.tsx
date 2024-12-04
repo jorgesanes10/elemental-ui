@@ -1,9 +1,9 @@
 import React, {
   useRef,
-  useEffect,
   useImperativeHandle,
   MutableRefObject,
   ComponentPropsWithoutRef,
+  useLayoutEffect,
 } from 'react';
 import classnames from 'classnames';
 import Icon from '../Icon';
@@ -30,7 +30,7 @@ const IconButton = React.forwardRef<IconButtonRef, IconButtonProps>(
       node: iconButtonNode,
     }));
 
-    useEffect(() => {
+    useLayoutEffect(() => {
       iconButtonNode.current = findElementNode(
         iconButtonNode,
       ) as HTMLButtonElement;

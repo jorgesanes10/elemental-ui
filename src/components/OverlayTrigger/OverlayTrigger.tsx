@@ -5,6 +5,7 @@ import React, {
   ReactElement,
   ReactNode,
   useEffect,
+  useLayoutEffect,
   useRef,
   useState,
 } from 'react';
@@ -49,10 +50,12 @@ const OverlayTrigger: FC<OverlayTriggerProps> = (props) => {
   const overlayNode: MutableRefObject<HTMLDivElement | null> = useRef(null);
   const triggerNode: MutableRefObject<HTMLDivElement | null> = useRef(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     overlayNode.current = findElementNode(overlayNode) as HTMLDivElement;
     triggerNode.current = findElementNode(triggerNode) as HTMLDivElement;
+  }, []);
 
+  useEffect(() => {
     if (props.defaultShow || props.show) {
       setDefaultShowTimeout(
         setTimeout(() => {

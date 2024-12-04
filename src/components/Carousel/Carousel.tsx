@@ -8,6 +8,7 @@ import React, {
   ReactElement,
   ReactNode,
   useEffect,
+  useLayoutEffect,
   useRef,
   useState,
 } from 'react';
@@ -60,10 +61,8 @@ const Carousel: FC<CarouselProps> = (props) => {
   const slidesContainerNode: MutableRefObject<HTMLDivElement | null> =
     useRef(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     setSlidesWidth();
-    generateIndicators(0);
-    storeSlides();
 
     currentSlideNode.current = findElementNode(
       currentSlideNode,
@@ -71,6 +70,11 @@ const Carousel: FC<CarouselProps> = (props) => {
     slidesContainerNode.current = findElementNode(
       slidesContainerNode,
     ) as HTMLDivElement;
+  }, []);
+
+  useEffect(() => {
+    generateIndicators(0);
+    storeSlides();
 
     window.addEventListener('resize', setSlidesWidth);
 

@@ -1,10 +1,10 @@
 import React, {
   useRef,
-  useEffect,
   useImperativeHandle,
   ComponentPropsWithoutRef,
   ReactElement,
   MutableRefObject,
+  useLayoutEffect,
 } from 'react';
 import classnames from 'classnames';
 import findElementNode from '../../utils/findElementNode';
@@ -33,7 +33,7 @@ const FloatingActionButton = React.forwardRef<
     node: floatingActionButtonNode,
   }));
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     floatingActionButtonNode.current = findElementNode(
       floatingActionButtonNode,
     ) as HTMLButtonElement;

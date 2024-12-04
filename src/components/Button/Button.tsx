@@ -1,9 +1,9 @@
 import React, {
   useRef,
-  useEffect,
   useImperativeHandle,
   MutableRefObject,
   ComponentPropsWithoutRef,
+  useLayoutEffect,
 } from 'react';
 import classnames from 'classnames';
 import Spinner from '../Spinner';
@@ -32,7 +32,7 @@ const Button = React.forwardRef<ButtonRef, ButtonProps>((props, ref) => {
     node: buttonNode,
   }));
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     buttonNode.current = findElementNode(buttonNode) as HTMLButtonElement;
   }, []);
 

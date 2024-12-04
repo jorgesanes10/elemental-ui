@@ -3,6 +3,7 @@ import {
   HTMLProps,
   MutableRefObject,
   useEffect,
+  useLayoutEffect,
   useRef,
   useState,
 } from 'react';
@@ -23,7 +24,7 @@ const Collapsible: FC<CollapsibleProps> = ({
 
   const collapseNode: MutableRefObject<HTMLDivElement | null> = useRef(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     collapseNode.current = findElementNode(collapseNode) as HTMLDivElement;
 
     if (expanded) {
