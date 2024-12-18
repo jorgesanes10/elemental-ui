@@ -18,6 +18,7 @@ export { default as FloatingActionButton } from './components/FloatingActionButt
 export { default as Icon } from './components/Icon';
 export { default as IconButton } from './components/IconButton';
 export { default as InfoPanel } from './components/InfoPanel';
+export { default as Modal } from './components/Modal';
 export { default as OverlayTrigger } from './components/OverlayTrigger';
 export { default as Panel } from './components/Panel';
 export { default as Popover } from './components/Popover';

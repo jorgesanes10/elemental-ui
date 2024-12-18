@@ -1,0 +1,257 @@
+@use '../../variables' as v;
+@use '../../mixins' as m;
+
+.eui-modal-open {
+  overflow: hidden;
+
+  .eui-modal {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+}
+
+.eui-modal {
+  display: block;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: v.$z-index-modal;
+  background-color: v.$backdrop-color;
+  opacity: 0;
+
+  &.centered {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .eui-modal-dialog {
+    box-shadow: v.$box-shadow-md;
+    position: static;
+    outline: 0;
+    width: auto;
+    margin: 10px;
+    border-radius: v.$border-radius-floating;
+    background-color: v.$modal-content-bg;
+    background-clip: padding-box;
+    will-change: transform;
+
+    .eui-modal-invisible-element {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+
+  &.fade {
+    animation: fadeOut 0.3s forwards;
+
+    .eui-modal-dialog {
+      animation: slideOut 0.3s forwards;
+    }
+  }
+
+  &.in {
+    animation: fadeIn 0.3s forwards;
+
+    .eui-modal-dialog {
+      animation: slideIn 0.3s forwards;
+    }
+  }
+
+  .eui-modal-header {
+    border-radius: v.$border-radius-base;
+    padding: v.$modal-title-padding;
+    @include m.clearfix;
+
+    .eui-modal-title {
+      outline: none;
+      line-height: v.$modal-title-line-height;
+      font-size: 17px;
+      font-weight: 600;
+      color: v.$modal-title-color;
+      margin: 4px 0 0;
+    }
+
+    .close {
+      float: right;
+      color: v.$gray-light;
+      position: relative;
+      top: 3px;
+    }
+  }
+
+  .eui-modal-body {
+    padding: v.$modal-inner-padding;
+  }
+
+  .eui-modal-sm {
+    .eui-modal-body {
+      padding-bottom: 16px;
+    }
+  }
+
+  .eui-modal-footer {
+    padding: v.$modal-footer-padding;
+    text-align: right;
+    @include m.clearfix;
+
+    .eui-btn + .eui-btn {
+      margin-left: 5px;
+      margin-bottom: 0;
+    }
+  }
+
+  &.right-drawer,
+  &.left-drawer {
+    .eui-modal-header {
+      border-radius: 0;
+    }
+
+    .eui-modal-dialog {
+      position: fixed;
+      margin: auto;
+      width: 354px;
+      height: 100%;
+      overflow-y: auto;
+      border-radius: 0;
+    }
+  }
+
+  &.right-drawer {
+    & .eui-modal-dialog {
+      right: 0;
+    }
+
+    &.fade .eui-modal-dialog {
+      animation: slideOutFromRight 0.3s forwards;
+    }
+
+    &.in .eui-modal-dialog {
+      animation: slideInFromRight 0.3s forwards;
+    }
+  }
+
+  &.left-drawer {
+    & .eui-modal-dialog {
+      left: 0;
+    }
+
+    &.fade .eui-modal-dialog {
+      animation: slideOutFromLeft 0.3s forwards;
+    }
+
+    &.in .eui-modal-dialog {
+      animation: slideInFromLeft 0.3s forwards;
+    }
+  }
+
+  @media (max-width: 414px) {
+    &.right-drawer,
+    &.left-drawer {
+      .eui-modal-dialog {
+        width: 90vw;
+      }
+    }
+  }
+
+  &.no-title {
+    .eui-modal-header {
+      padding-top: 15px;
+      padding-bottom: 5px;
+    }
+  }
+}
+
+@media (min-width: v.$screen-sm-min) {
+  .eui-modal .eui-modal-dialog {
+    width: v.$modal-md;
+    margin: 30px auto;
+
+    &.eui-modal-sm {
+      width: v.$modal-sm;
+    }
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateY(-25%);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(320px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutFromRight {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(320px);
+  }
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-320px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes slideOutFromLeft {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-320px);
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes slideOut {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-25%);
+  }
+}
